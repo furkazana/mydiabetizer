@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diabetics.findBySurname", query = "SELECT d FROM Diabetics d WHERE d.surname = :surname"),
     @NamedQuery(name = "Diabetics.findByEmail", query = "SELECT d FROM Diabetics d WHERE d.email = :email"),
     @NamedQuery(name = "Diabetics.findByPassword", query = "SELECT d FROM Diabetics d WHERE d.password = :password"),
+    @NamedQuery(name ="Diabetics.getHighestUserID", query = "SELECT MAX(b.diabeticId) FROM Diabetics b"),
     @NamedQuery(name = "Diabetics.findByEmailAndPassword", query = "SELECT d FROM Diabetics d WHERE d.password = :password and d.email = :email "),
 
     @NamedQuery(name = "Diabetics.findByRegisterDate", query = "SELECT d FROM Diabetics d WHERE d.registerDate = :registerDate")})

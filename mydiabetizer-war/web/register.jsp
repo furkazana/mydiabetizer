@@ -12,7 +12,7 @@
                 <h4>Sign up and start using MyDiabetizer today.</h4>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
-                <form action="" method="post">
+                <form action="SingIn" method="post">
                     <div class="form-group">
                         <input type="firstName" name="firstName" class="form-control" id="firstName" placeholder="First name">
                     </div>

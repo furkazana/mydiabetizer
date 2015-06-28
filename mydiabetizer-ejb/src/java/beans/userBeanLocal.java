@@ -6,6 +6,7 @@
 package beans;
 
 import ent.Diabetics;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -17,4 +18,13 @@ public interface userBeanLocal
 {
     public Diabetics getDiabetic();
     public boolean isValidUsr(String email,String password);
+    public void storeUser(String firstName,String lastName,String email,String password);
+
+    /**
+     *
+     * @param email
+     * @return
+     */
+    public Date getDate(String email);
+
 }

@@ -6,9 +6,12 @@
 package servlets;
 
 import beans.userBeanLocal;
+import controllers.EncryptionControl;
+import dp.EncrAlgs;
 import ent.Diabetics;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +43,22 @@ public class login extends HttpServlet {
     {
        String email= request.getParameter("email");
        String password= request.getParameter("password");
-       boolean bo=userBean.isValidUsr(email,password);
+       
+       Date date;
+       date=userBean.getDate(email);
+       String  hexPassword=null;
+       
+       if(date!=null)
+       {
+       EncryptionControl encr =new EncrAlgs(password);
+       encr.check(date);
+       hexPassword=encr.getHexPassword();
+       }
+       
+       boolean bo=userBean.isValidUsr(email,hexPassword);
+       
+          
+       
        Diabetics d=userBean.getDiabetic();
                     try (PrintWriter out = response.getWriter()) 
                     {
