@@ -7,16 +7,16 @@ package beans;
 
 
 import ent.Diabetics;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Rock n Roll
@@ -41,7 +41,7 @@ public class userBean implements userBeanLocal
              List <Diabetics> isin=q.getResultList();
              d=isin.get(0); 
              
-                 return d.getRegisterDate();
+                 return d.getDate();
        
     }
     
@@ -79,17 +79,20 @@ public class userBean implements userBeanLocal
    
 
     @Override
-    public void storeUser(String firstName,String lastName,String email,String password) {
-       
+    public void storeUser(String firstName,String lastName,String email,String password) 
+    {
          Query q= em.createNamedQuery("Diabetics.getHighestUserID");
          int id=(int) q.getSingleResult()+1;
-        Diabetics d=new Diabetics();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        d.setDiabeticId(id);
-        d.setRegisterDate(date);
+         Diabetics d=new Diabetics();
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+         Date date = new Date();
+         
+         
+         
+        d.setId(id);     
         d.setEmail(email);
-        d.setFirsName(firstName);
+        d.setFirstName(firstName);
+        d.setDate(date);
         d.setSurname(lastName);
         d.setPassword(password);
                                 

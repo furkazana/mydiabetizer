@@ -59,7 +59,7 @@ public class login extends HttpServlet {
        
           
        
-       Diabetics d=userBean.getDiabetic();
+       Diabetics d = userBean.getDiabetic();
                     try (PrintWriter out = response.getWriter()) 
                     {
                     out.println("<!DOCTYPE html>");
@@ -70,8 +70,8 @@ public class login extends HttpServlet {
                     out.println("<body>");
                  
                     out.println("<h1>Error</h1>");
-                    out.println("<h1>user is:"+email+" password is :"+password+"valid user :"+bo+" </h1>");
-                    out.println("<h1>"+d.getFirsName()+" </h1>");
+                    out.println("<h1>user is:"+d.getEmail()+" password is :"+d.getPassword()+"valid user :"+" </h1>");
+                    out.println("<h1>"+"first name to go here" +" </h1>");
                     out.println("</body>");
                     out.println("</html>");
                     }

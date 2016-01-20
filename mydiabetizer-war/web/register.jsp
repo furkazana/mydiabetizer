@@ -20,8 +20,9 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
                 <form action="SingIn" method="post">
                     <div class="form-group">
-                        <div class="form-error"<% if(!error.getFirstNameError.equals(NULL)){error.get} %>></div>
+                     <%--   <div class="form-error"<% if(!error.getFirstNameError.equals(NULL)){error.get} %>></div>
                         <input type="firstName" name="firstName" class="form-control" id="firstName" placeholder="First name" value="<%if(!firstName.equals(null){firstName}%>">
+                     --%>
                     </div>
                     <div class="form-group">
                         <input type="lastName" name="lastName" class="form-control" id="lastName" placeholder="Last name">

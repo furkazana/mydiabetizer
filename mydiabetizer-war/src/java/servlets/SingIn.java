@@ -9,7 +9,6 @@ import beans.userBeanLocal;
 import controllers.EncryptionControl;
 import dp.EncrAlgs;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,28 +21,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SingIn extends HttpServlet
 {
+    
     @EJB
     private userBeanLocal userBean;
 
    
 
    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-      
-    }      
-        
-        
-        
-        
+ 
     
 
    
-    @Override
+     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
+            throws ServletException, IOException  
     {
         
         String firstName=null;
@@ -53,16 +44,17 @@ public class SingIn extends HttpServlet
         String passwordRetyped=null;  
         String hexPassword;
         String errorEmpty=null;  
-        
+        String firstNameError=null;
         try
         {
-        firstName=request.getParameter("firstName");//
-        if(firstName.equals(null))
-        {
-            firstNameError = "Please enter your name.";
-        }
-        if () {
-            firstNameError = "You
+       // firstName=request.getParameter("firstName");//
+       // if(firstName.equals(null))
+       // {
+       //     firstNameError = "Please enter your name.";
+       // }
+       // if (true) 
+       // {
+        firstNameError = "You";
         lastName=request.getParameter("lastName");
         email=request.getParameter("email");
         password=request.getParameter("password");
@@ -70,11 +62,12 @@ public class SingIn extends HttpServlet
         
          if(!password.equals(passwordRetyped))
          {
-            request.setAttribute(firstNameError,firstNameError);  
+           request.setAttribute(firstNameError,firstNameError);  
            request.setAttribute(firstName, firstName);
            this.getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
-         } //ERROR PAGE TO BE DISPLAYED
+        // } //ERROR PAGE TO BE DISPLAYED
         
+        }
         }
         catch (Exception  e)
              {
@@ -85,14 +78,15 @@ public class SingIn extends HttpServlet
        encr.run();
        hexPassword=encr.getHexPassword();
        
-       userBean.storeUser(firstName,lastName,email,hexPassword);
+      userBean.storeUser("Tsetso",lastName,email,hexPassword);
         
       
     }
 
    
     @Override
-    public String getServletInfo() {
+    public String getServletInfo() 
+    {
         return "Short description";
     }// </editor-fold>
 

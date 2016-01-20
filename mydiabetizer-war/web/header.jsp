@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20">
                         <a href="/" class="logo">My Diabetizer</a>
-                        <a class="btn btn-primary pull-right" href="/user">Sign in</a>
+                        <a class="btn btn-primary pull-right" href="./login.jsp">Log In</a>
                         <a class="btn btn-primary pull-right margin-right-10"  href="./register.jsp">Sign up</a>
                     </div>
                 </div>
