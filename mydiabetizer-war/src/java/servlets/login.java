@@ -9,6 +9,7 @@ import beans.userBeanLocal;
 import controllers.EncryptionControl;
 import dp.EncrAlgs;
 import ent.Diabetics;
+import static ent.Diabetics_.surname;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -60,8 +61,9 @@ public class login extends HttpServlet {
           
        
        Diabetics d = userBean.getDiabetic();
-                    try (PrintWriter out = response.getWriter()) 
-                    {
+        String sirname=d.getSurname();
+                   try (PrintWriter out = response.getWriter()) 
+                    {/* 
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
                     out.println("<head>");
@@ -74,8 +76,10 @@ public class login extends HttpServlet {
                     out.println("<h1>"+"first name to go here" +" </h1>");
                     out.println("</body>");
                     out.println("</html>");
-                    }
-               
+                 */  
+           request.setAttribute("SIRNAME",sirname);
+           this.getServletContext().getRequestDispatcher("/MyPage.jsp").forward(request, response);
+    }
     }
 
    
