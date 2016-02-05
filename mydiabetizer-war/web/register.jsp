@@ -3,7 +3,7 @@
     Created on : Jun 22, 2015, 11:31:54 PM
     Author     : Tsvetelin
 --%>
-<jsp:include page="logRegHeader.jsp" />
+<jsp:include page="header.jsp" />
 
 <%
    String firstName=request.getParameter("firstName");
@@ -14,11 +14,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <div class="logo">My Diabetizer</div>
-                <h4>Sign up and start using MyDiabetizer today.</h4>
+                <div class="logo white-text">My Diabetizer</div>
+                <h4 class="white-text">Sign up and start using MyDiabetizer today.</h4>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
-                <form action="SingIn" method="post">
+                <form action="signup" method="post">
                     <div class="form-group">
                      <%--   <div class="form-error"<% if(!error.getFirstNameError.equals(NULL)){error.get} %>></div>
                         <input type="firstName" name="firstName" class="form-control" id="firstName" placeholder="First name" value="<%if(!firstName.equals(null){firstName}%>">
@@ -36,7 +36,8 @@
                     <div class="form-group">
                         <input type="password" name="passwordRetyped" class="form-control" id="password" placeholder="Retype password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    <span><a class="white-text" href="./login.jsp">Already have an account?</a></span>
+                    <button type="submit" class="btn btn-primary btn-transparent pull-right">Sign up</button>
                 </form>
             </div>
         </div>
