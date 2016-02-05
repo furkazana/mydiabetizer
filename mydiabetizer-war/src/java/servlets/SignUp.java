@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rock n Roll
  */
-public class SingIn extends HttpServlet
+public class SignUp extends HttpServlet
 {
     
     @EJB
