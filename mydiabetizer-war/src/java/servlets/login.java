@@ -78,7 +78,7 @@ public class login extends HttpServlet {
                     out.println("</html>");
                  */  
            request.setAttribute("SIRNAME",sirname);
-           this.getServletContext().getRequestDispatcher("/MyPage.jsp").forward(request, response);
+           this.getServletContext().getRequestDispatcher("/mypage.jsp").forward(request, response);
     }
     }
 
