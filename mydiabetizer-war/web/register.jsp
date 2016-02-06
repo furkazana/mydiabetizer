@@ -3,7 +3,7 @@
     Created on : Jun 22, 2015, 11:31:54 PM
     Author     : Tsvetelin
 --%>
-<jsp:include page="header.jsp" />
+<jsp:include page="index-header.jsp" />
 
 <%
    String firstName=request.getParameter("firstName");
@@ -14,7 +14,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <div class="logo white-text">My Diabetizer</div>
                 <h4 class="white-text">Sign up and start using MyDiabetizer today.</h4>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
@@ -43,4 +42,4 @@
         </div>
     </div>
 </section>    
-<jsp:include page="footer.jsp" />
+<jsp:include page="index-footer.jsp" />

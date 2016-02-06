@@ -3,7 +3,7 @@
     Created on : Jun 22, 2015, 11:31:46 PM
     Author     : Tsvetelin
 --%>
-<jsp:include page="header.jsp" />
+<jsp:include page="index-header.jsp" />
 <section class="login">
     <div class="container">
         <div class="row">
@@ -26,4 +26,4 @@
         </div>
     </div>
 </section>    
-<jsp:include page="footer.jsp" />
+<jsp:include page="index-footer.jsp" />

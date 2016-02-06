@@ -17,9 +17,20 @@
         <section class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20">
-                        
+                    <div class="col-xs-12 col-sm-12 col-md-3 margin-top-20">
+                        <span class="logo white-text">My Diabetizer</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
+                        <ul class="main-menu">
+                            <li><a href="./home.jsp">Home</a></li>
+                            <li><a href="./calculator.jsp">Calculator</button></a></li>
+                            <li><a href="./graphs.jsp">Graphs</button></a></li>
+                            <li><a href="./account.jsp">Account</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+        <section class="content">
+            <div class="container">
+                <div class="row">
