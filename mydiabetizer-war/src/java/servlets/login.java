@@ -72,7 +72,7 @@ public class login extends HttpServlet {
 //
 //            //request.setAttribute("SIRNAME",sirname);
 //        }
-        response.sendRedirect(request.getContextPath() + "/mypage.jsp");
+        response.sendRedirect(request.getContextPath() + "/home.jsp");
     }
 
     @Override
