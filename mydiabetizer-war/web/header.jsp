@@ -3,6 +3,24 @@
     Created on : Jun 22, 2015, 11:20:10 PM
     Author     : Tsvetelin
 --%>
+<%
+//allow access only if session exists
+String user = null;
+if(session.getAttribute("user") == null)
+{
+    response.sendRedirect(request.getContextPath() + "/register.jsp");
+    
+}else user = (String) session.getAttribute("user");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("user")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,6 +44,10 @@
                             <li><a href="./calculator.jsp">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
                             <li><a href="./account.jsp">Account</a></li>
+                            <li> <%=userName %></li>
+                            <form action="login" method="Get">
+                             <button type="submit" class="btn btn-primary btn-transparent pull-right">Log Out</button>            
+                            </form>
                         </ul>
                     </div>
                 </div>
