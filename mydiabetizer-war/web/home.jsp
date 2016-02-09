@@ -4,7 +4,7 @@
     Author     : Rock n Roll
 --%>
 <%
-//allow access only if session exists
+//allow access only if session exists.
 String user = null;
 if(session.getAttribute("user") == null)
 {
