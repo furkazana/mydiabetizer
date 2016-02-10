@@ -143,6 +143,7 @@
                         <input type="text" class="form-control third-input" name="rNotes">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary btn-transparent pull-right margin-top-20">Save</button>
             </div>
         </form>
     </div>
