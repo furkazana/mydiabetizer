@@ -7,16 +7,117 @@ and open the template in the editor.
     Created on : Jun 24, 2015, 1:24:31 PM
     Author     : Rock n Roll
 */
-body {font-family: 'Droid Sans', sans-serif;}
+body {font-family: 'Droid Sans', sans-serif;
+      background: url("../img/bg1.jpg");
+      background-size: cover;
+}
 
 .margin-top-20 {margin-top: 20px;}
+.margin-top-100 {margin-top: 100px;}
+
 .margin-left-10 {margin-left: 10px;}
 .margin-right-10 {margin-right: 10px;}
+
+.padding-0 {
+    padding:0px;
+}
+
 .clear {clear: both;}
 .logo {
     color: infotext;
     font-size: 35px;
 }
+
+a.white-text:hover {
+    color : #f9f9f9;
+}
+
+.white-text {
+    color: #f9f9f9;
+}
+
+.btn-transparent {
+    background: transparent;
+    border-color: #f9f9f9;
+}
+
 section.login, section.register {
     margin-top:100px;
+}
+
+.main-menu {
+    margin-top: 16px;
+}
+
+.main-menu li {
+    padding: 5px 20px;
+    display: inline;
+    list-style-type: none;
+}
+
+.main-menu li a,  .main-menu li a:hover {
+    color: #f9f9f9;
+    font-size: 18px;
+}
+
+#chart1div, #chart2div, #chart3div, #chart4div {
+    height	: 280px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}	
+
+.form-inline .form-control {
+    width: 100%;
+    border-bottom: 0 none;
+    box-shadow: none;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.form-inline .form-control:focus {
+    border-color: #ccc;
+}
+
+.narrow .form-control {
+    padding : 2px;
+    border-right: 0px;
+}
+
+.first-input {
+    margin-right: -5px;
+}
+
+.second-input {
+    margin-left: -4px;
+}
+
+.third-input {
+    margin-left: -4px;
+}
+
+.do-label {
+    width: 78px;
+    float: left;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.first-label {
+    margin-top : 30px;
+}
+
+.narrow {
+    width: 50px;
+    display: inline-block;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.wide {
+    width: 415px;
+    float: right;
 }
