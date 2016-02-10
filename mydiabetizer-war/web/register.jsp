@@ -24,7 +24,7 @@
                      --%>
                     </div>
                     <div class="form-group">
-                        <input type="lastName" name="lastName" class="form-control" id="lastName" placeholder="Last name">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Name">
                     </div>
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" id="email" placeholder="Email">

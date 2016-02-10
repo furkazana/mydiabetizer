@@ -43,11 +43,11 @@ for(Cookie cookie : cookies){
                             <li><a href="./home.jsp">Home</a></li>
                             <li><a href="./calculator.jsp">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
-                            <li><a href="./account.jsp">Account</a></li>
-                            <li> <%=userName %></li>
-                            <form action="login" method="Get">
-                             <button type="submit" class="btn btn-primary btn-transparent pull-right">Log Out</button>            
-                            </form>
+                            <%if(session.getAttribute("user") != null)
+                                out.println("<li><a href=\"./account.jsp\">My account</a></li>");
+                            %> 
+                            <!-- <li> <%=userName %></li> -->
+                            <a class="btn btn-primary btn-transparent pull-right" href="/logout">Log Out</a>            
                         </ul>
                     </div>
                 </div>
