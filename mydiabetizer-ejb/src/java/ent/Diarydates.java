@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diarydates.findAll", query = "SELECT d FROM Diarydates d"),
     @NamedQuery(name = "Diarydates.findByDiarydateId", query = "SELECT d FROM Diarydates d WHERE d.diarydateId = :diarydateId"),
     @NamedQuery(name = "Diarydates.findByUserId", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId"),
-    @NamedQuery(name ="Diarydates.getTableID", query = "SELECT MAX(d.DIARYDATE_ID) FROM Diarydates d"),
+    @NamedQuery(name = "Diarydates.findHighestTableNumber", query = "SELECT max(d.diarydateId) FROM Diarydates d"),
     @NamedQuery(name = "Diarydates.findByDate", query = "SELECT d FROM Diarydates d WHERE d.date = :date")})
 public class Diarydates implements Serializable {
 
@@ -81,9 +81,7 @@ public class Diarydates implements Serializable {
         return date;
     }
 
-    public void setDate(String date)
-    
-    {
+    public void setDate(String date) {
         this.date = date;
     }
 
