@@ -30,7 +30,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100" >
     <h3 class="white-text">Daily organizer</h3>
     <div class="col-xs-12 col-sm-12 col-md-7 margin-top-20">
-        <form class="form-inline" action="" method="post">
+        <form class="form-inline" action="diaryHandler" method="post">
             <div class="form-group col-md-12">
                 <div class="pull-left">
                     <label class="control-label white-text do-label first-label">Out of bed</label>
