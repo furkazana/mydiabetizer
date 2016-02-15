@@ -49,7 +49,10 @@ public class diaryHandler extends HttpServlet
     } else 
          {
             if(diaryDatesBean.resultExistForTheDay((int) session.getAttribute("userIs"))) 
-              diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
+            {
+                diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
+            } else {
+            }
    
          }
         

@@ -49,23 +49,35 @@ public class diaryDatesBean
     
     public boolean resultExistForTheDay(int id)
     {
+          boolean nul;
          DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
          Date date = new Date();
           List<Diarydates> dd;
+         
         try
         {
            Query q= em.createNamedQuery("Diarydates.findByUserIdAndDate");
            q.setParameter("date", dateFormat.format(date));
            q.setParameter("userId", id);
            dd = q.getResultList();
+       int size = dd.size();
+       if(size==0)
+       {
+           nul=true;//return true if list is empty
+       }
+       else
+           nul=false;//return false if there is a addition to the list
         }
        catch(javax.ejb.EJBException e) 
        {
-          dd=null;
+           nul=true;//return true if catch ejb exception -posible when can find data in the data base
+          
        }
-         return dd == null;
+         return nul;
     }
 
+    
+    
     public void persist(Object object) {
         em.persist(object);
     }

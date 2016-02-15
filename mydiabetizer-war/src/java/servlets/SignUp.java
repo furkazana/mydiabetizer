@@ -79,6 +79,7 @@ public class SignUp extends HttpServlet
        hexPassword=encr.getHexPassword();
        
       userBean.storeUser("Tsetso",lastName,email,hexPassword);
+      this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         
       
     }
