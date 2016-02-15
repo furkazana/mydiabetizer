@@ -5,10 +5,14 @@
  */
 package beans;
 
+
 import ent.Diarydates;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,7 +32,7 @@ public class diaryDatesBean
     private EntityManager em;
     
     
-          public void addUserAndDate(int id)
+    public void addUserAndDate(int id)
     {  
          Query q= em.createNamedQuery("Diarydates.findHighestTableNumber");
          int tableId=(int) q.getSingleResult()+1;
@@ -38,9 +42,28 @@ public class diaryDatesBean
          
          diary.setDiarydateId(tableId);
          diary.setUserId(id);
-         diary.setDate(date.toString());
+         diary.setDate(dateFormat.format(date));
          
          em.persist(diary);
+    }
+    
+    public boolean resultExistForTheDay(int id)
+    {
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+         Date date = new Date();
+          List<Diarydates> dd;
+        try
+        {
+           Query q= em.createNamedQuery("Diarydates.findByUserIdAndDate");
+           q.setParameter("date", dateFormat.format(date));
+           q.setParameter("userId", id);
+           dd = q.getResultList();
+        }
+       catch(javax.ejb.EJBException e) 
+       {
+          dd=null;
+       }
+         return dd == null;
     }
 
     public void persist(Object object) {
