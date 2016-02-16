@@ -6,6 +6,8 @@
 package servlets;
 
 import beans.diaryDatesBean;
+import ent.Diarydates;
+import ent.Oob;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -26,12 +28,26 @@ public class diaryHandler extends HttpServlet
     private diaryDatesBean diaryDatesBean;
   
     
-
+      String daylyresults[]={"oobSL","oobINS","oobNotes","bbSL","bbINS","bbNotes","b2SL","b2INS","b2Notes",
+                             "blSL","blINS","blNotes","l2SL","l2INS","l2Notes","bdSL","bdINS","bdNotes",
+                             "d2SL","d2INS","d2Notes","bbedSL","bbedINS","bbedNotes","rSL","rINS","rNotes"};
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        int lenth=daylyresults.length;
+      //  for(int i=0;i<lenth-3;i++)
+      //  {
+            
+          //  if(i==0 || i+1==0 || i+2==0)
+         //   {}
+          //  else
+          //  {
+                
+           // }
+      //  }
+        
         
     }
 
@@ -47,11 +63,40 @@ public class diaryHandler extends HttpServlet
            response.sendRedirect(request.getContextPath() + "/register.jsp");
 
     } else 
-         {
-            if(diaryDatesBean.resultExistForTheDay((int) session.getAttribute("userIs"))) 
+         {    Diarydates diaryDateAndUser = null;
+              diaryDateAndUser =  diaryDatesBean.resultExistForTheDay((int) session.getAttribute("userIs"));
+            if(diaryDateAndUser==null) 
             {
-                diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
-            } else {
+              diaryDateAndUser= diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
+            }
+          
+                if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),0))
+                {       Double convertedSugar;
+                        int convertedInsulin;
+                        
+                        String sugar = request.getParameter(daylyresults[0]);
+                        String insulin = request.getParameter(daylyresults[1]);
+                        String note = request.getParameter(daylyresults[2]);
+                        
+                        if(insulin.equals(""))//catch exception if there is no input and set it up to 0
+                        { convertedInsulin=0;}
+                        else
+                        {convertedInsulin=Integer.parseInt(insulin); }//if there is input converted it.
+                        if(sugar.equals(""))
+                        { convertedSugar=0.0;}
+                        else
+                        { convertedSugar=Double.parseDouble(sugar); }
+                        
+                        
+                       
+                        Oob o=new Oob();
+                        o.setOobSugar(convertedSugar);
+                        o.setOobInsulin(convertedInsulin);
+
+                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser);
+                }
+            
+             else {
             }
    
          }
