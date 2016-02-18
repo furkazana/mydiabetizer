@@ -26,18 +26,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bplus2.findAll", query = "SELECT b FROM Bplus2 b"),
-    @NamedQuery(name = "Bplus2.findByB2UserTimeId", query = "SELECT b FROM Bplus2 b WHERE b.b2UserTimeId = :b2UserTimeId"),
+    @NamedQuery(name = "Bplus2.findByB2UserDateId", query = "SELECT b FROM Bplus2 b WHERE b.b2UserDateId = :b2UserDateId"),
     @NamedQuery(name = "Bplus2.findByB2Sugar", query = "SELECT b FROM Bplus2 b WHERE b.b2Sugar = :b2Sugar"),
     @NamedQuery(name = "Bplus2.findByB2Insulin", query = "SELECT b FROM Bplus2 b WHERE b.b2Insulin = :b2Insulin"),
     @NamedQuery(name = "Bplus2.findByB2Time", query = "SELECT b FROM Bplus2 b WHERE b.b2Time = :b2Time")})
-public class Bplus2 implements Serializable {
+public class Bplus2 extends TimeSlots implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "B2_USER_TIME_ID")
-    private Integer b2UserTimeId;
+    @Column(name = "B2_USER_DATE_ID")
+    private Integer b2UserDateId;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "B2_SUGAR")
     private Double b2Sugar;
@@ -50,16 +50,16 @@ public class Bplus2 implements Serializable {
     public Bplus2() {
     }
 
-    public Bplus2(Integer b2UserTimeId) {
-        this.b2UserTimeId = b2UserTimeId;
+    public Bplus2(Integer b2UserDateId) {
+        this.b2UserDateId = b2UserDateId;
     }
 
-    public Integer getB2UserTimeId() {
-        return b2UserTimeId;
+    public Integer getB2UserDateId() {
+        return b2UserDateId;
     }
 
-    public void setB2UserTimeId(Integer b2UserTimeId) {
-        this.b2UserTimeId = b2UserTimeId;
+    public void setB2UserDateId(Integer b2UserDateId) {
+        this.b2UserDateId = b2UserDateId;
     }
 
     public Double getB2Sugar() {
@@ -85,11 +85,44 @@ public class Bplus2 implements Serializable {
     public void setB2Time(String b2Time) {
         this.b2Time = b2Time;
     }
+    @Override
+     public Integer getUserDateId() {
+        return b2UserDateId;
+    }
+      @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.b2UserDateId = oobUserDateId;
+    }
+      @Override
+     public Double getSugar() {
+        return b2Sugar;
+    }
+     @Override
+     public void setSugar(Double oobSugar) {
+        this.b2Sugar = oobSugar;
+    }
+     @Override
+     public Integer getInsulin() {
+        return b2Insulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
+        this.b2Insulin = oobInsulin;
+    }
+     @Override
+     public String getTime() {
+        return b2Time;
+    }
+     @Override
+    public void setTime(String oobTime) {
+        this.b2Time = oobTime;
+    }
+    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (b2UserTimeId != null ? b2UserTimeId.hashCode() : 0);
+        hash += (b2UserDateId != null ? b2UserDateId.hashCode() : 0);
         return hash;
     }
 
@@ -100,7 +133,7 @@ public class Bplus2 implements Serializable {
             return false;
         }
         Bplus2 other = (Bplus2) object;
-        if ((this.b2UserTimeId == null && other.b2UserTimeId != null) || (this.b2UserTimeId != null && !this.b2UserTimeId.equals(other.b2UserTimeId))) {
+        if ((this.b2UserDateId == null && other.b2UserDateId != null) || (this.b2UserDateId != null && !this.b2UserDateId.equals(other.b2UserDateId))) {
             return false;
         }
         return true;
@@ -108,7 +141,7 @@ public class Bplus2 implements Serializable {
 
     @Override
     public String toString() {
-        return "ent.Bplus2[ b2UserTimeId=" + b2UserTimeId + " ]";
+        return "ent.Bplus2[ b2UserDateId=" + b2UserDateId + " ]";
     }
     
 }

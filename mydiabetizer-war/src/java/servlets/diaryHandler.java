@@ -8,14 +8,17 @@ package servlets;
 import beans.diaryDatesBean;
 import ent.Diarydates;
 import ent.Oob;
+import ent.TimeSlots;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import patterns.DiaryFactory;
 
 /**
  *
@@ -70,13 +73,16 @@ public class diaryHandler extends HttpServlet
               diaryDateAndUser= diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
             }
           
-                if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),0))
-                {       Double convertedSugar;
+                if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1,daylyresults[3]))//hard coding diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1
+                {    
+                    
+                    
+                        Double convertedSugar;
                         int convertedInsulin;
                         
-                        String sugar = request.getParameter(daylyresults[0]);
-                        String insulin = request.getParameter(daylyresults[1]);
-                        String note = request.getParameter(daylyresults[2]);
+                        String sugar = request.getParameter(daylyresults[3]);
+                        String insulin = request.getParameter(daylyresults[4]);//hard coding
+                        String note = request.getParameter(daylyresults[5]);
                         
                         if(insulin.equals(""))//catch exception if there is no input and set it up to 0
                         { convertedInsulin=0;}
@@ -87,14 +93,20 @@ public class diaryHandler extends HttpServlet
                         else
                         { convertedSugar=Double.parseDouble(sugar); }
                         
-                        
+                      if(convertedInsulin!=0 || convertedSugar!=0 )
+                      {   
                        
-                        Oob o=new Oob();
-                        o.setOobSugar(convertedSugar);
-                        o.setOobInsulin(convertedInsulin);
-
-                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser);
-                }
+                       // Oob o=new Oob();
+                          DiaryFactory dFactory=new DiaryFactory();
+                          TimeSlots o = dFactory.getTimeSlots(daylyresults[3]);//hard coding
+                      
+                      //  o.setOobSugar(convertedSugar);
+                      //  o.setOobInsulin(convertedInsulin);
+                          o.setSugar(convertedSugar);
+                          o.setInsulin(convertedInsulin);
+                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser,daylyresults[3]);//hard coding
+                      }
+               }
             
              else {
             }

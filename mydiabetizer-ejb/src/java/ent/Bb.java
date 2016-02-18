@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Bb.findByBbSugar", query = "SELECT b FROM Bb b WHERE b.bbSugar = :bbSugar"),
     @NamedQuery(name = "Bb.findByBbInsulin", query = "SELECT b FROM Bb b WHERE b.bbInsulin = :bbInsulin"),
     @NamedQuery(name = "Bb.findByBbTime", query = "SELECT b FROM Bb b WHERE b.bbTime = :bbTime")})
-public class Bb implements Serializable {
+public class Bb extends TimeSlots implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -85,6 +85,41 @@ public class Bb implements Serializable {
     public void setBbTime(String bbTime) {
         this.bbTime = bbTime;
     }
+    
+    @Override
+     public Integer getUserDateId() {
+        return bbUserDateId;
+    }
+      @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.bbUserDateId = oobUserDateId;
+    }
+      @Override
+     public Double getSugar() {
+        return bbSugar;
+    }
+     @Override
+     public void setSugar(Double oobSugar) {
+        this.bbSugar = oobSugar;
+    }
+     @Override
+     public Integer getInsulin() {
+        return bbInsulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
+        this.bbInsulin = oobInsulin;
+    }
+     @Override
+     public String getTime() {
+        return bbTime;
+    }
+     @Override
+    public void setTime(String oobTime) {
+        this.bbTime = oobTime;
+    }
+    
+    
 
     @Override
     public int hashCode() {

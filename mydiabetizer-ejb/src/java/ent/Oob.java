@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Oob.findByOobSugar", query = "SELECT o FROM Oob o WHERE o.oobSugar = :oobSugar"),
     @NamedQuery(name = "Oob.findByOobInsulin", query = "SELECT o FROM Oob o WHERE o.oobInsulin = :oobInsulin"),
     @NamedQuery(name = "Oob.findByOobTime", query = "SELECT o FROM Oob o WHERE o.oobTime = :oobTime")})
-public class Oob implements Serializable {
+public class Oob extends TimeSlots implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,42 +47,77 @@ public class Oob implements Serializable {
     @Column(name = "OOB_TIME")
     private String oobTime;
 
-    public Oob() {
+    public Oob()
+    {
     }
-
+   
     public Oob(Integer oobUserDateId) {
         this.oobUserDateId = oobUserDateId;
     }
 
+   
+   
+
     public Integer getOobUserDateId() {
+        return oobUserDateId;
+    }
+     @Override
+     public Integer getUserDateId() {
         return oobUserDateId;
     }
 
     public void setOobUserDateId(Integer oobUserDateId) {
         this.oobUserDateId = oobUserDateId;
     }
-
+     @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.oobUserDateId = oobUserDateId;
+    }
     public Double getOobSugar() {
+        return oobSugar;
+    }
+    @Override
+     public Double getSugar() {
         return oobSugar;
     }
 
     public void setOobSugar(Double oobSugar) {
         this.oobSugar = oobSugar;
     }
+    @Override
+     public void setSugar(Double oobSugar) {
+        this.oobSugar = oobSugar;
+    }
 
     public Integer getOobInsulin() {
         return oobInsulin;
     }
-
+    @Override
+     public Integer getInsulin() {
+        return oobInsulin;
+    }
+    
     public void setOobInsulin(Integer oobInsulin) {
+        this.oobInsulin = oobInsulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
         this.oobInsulin = oobInsulin;
     }
 
     public String getOobTime() {
         return oobTime;
     }
+    @Override
+     public String getTime() {
+        return oobTime;
+    }
 
     public void setOobTime(String oobTime) {
+        this.oobTime = oobTime;
+    }
+    @Override
+    public void setTime(String oobTime) {
         this.oobTime = oobTime;
     }
 

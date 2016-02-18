@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Random.findByRandomSugar", query = "SELECT r FROM Random r WHERE r.randomSugar = :randomSugar"),
     @NamedQuery(name = "Random.findByRandomInsulin", query = "SELECT r FROM Random r WHERE r.randomInsulin = :randomInsulin"),
     @NamedQuery(name = "Random.findByRandomTime", query = "SELECT r FROM Random r WHERE r.randomTime = :randomTime")})
-public class Random implements Serializable {
+public class Random extends TimeSlots  implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,15 +52,15 @@ public class Random implements Serializable {
 
     public Random() {
     }
-
+    
     public Random(Integer randomId) {
         this.randomId = randomId;
     }
-
+    @Override
     public Integer getRandomId() {
         return randomId;
     }
-
+    @Override
     public void setRandomId(Integer randomId) {
         this.randomId = randomId;
     }
@@ -96,7 +96,38 @@ public class Random implements Serializable {
     public void setRandomTime(String randomTime) {
         this.randomTime = randomTime;
     }
-
+     @Override
+     public Integer getUserDateId() {
+        return randomUserDateId;
+    }
+      @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.randomUserDateId = oobUserDateId;
+    }
+      @Override
+     public Double getSugar() {
+        return randomSugar;
+    }
+     @Override
+     public void setSugar(Double oobSugar) {
+        this.randomSugar = oobSugar;
+    }
+     @Override
+     public Integer getInsulin() {
+        return randomInsulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
+        this.randomInsulin = oobInsulin;
+    }
+     @Override
+     public String getTime() {
+        return randomTime;
+    }
+     @Override
+    public void setTime(String oobTime) {
+        this.randomTime = oobTime;
+    }
     @Override
     public int hashCode() {
         int hash = 0;

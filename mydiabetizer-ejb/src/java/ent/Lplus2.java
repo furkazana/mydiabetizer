@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Lplus2.findByL2Sugar", query = "SELECT l FROM Lplus2 l WHERE l.l2Sugar = :l2Sugar"),
     @NamedQuery(name = "Lplus2.findByL2Insulin", query = "SELECT l FROM Lplus2 l WHERE l.l2Insulin = :l2Insulin"),
     @NamedQuery(name = "Lplus2.findByL2Time", query = "SELECT l FROM Lplus2 l WHERE l.l2Time = :l2Time")})
-public class Lplus2 implements Serializable {
+public class Lplus2 extends TimeSlots implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -85,7 +85,40 @@ public class Lplus2 implements Serializable {
     public void setL2Time(String l2Time) {
         this.l2Time = l2Time;
     }
-
+   
+    @Override
+     public Integer getUserDateId() {
+        return l2UserDateId;
+    }
+      @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.l2UserDateId = oobUserDateId;
+    }
+      @Override
+     public Double getSugar() {
+        return l2Sugar;
+    }
+     @Override
+     public void setSugar(Double oobSugar) {
+        this.l2Sugar = oobSugar;
+    }
+     @Override
+     public Integer getInsulin() {
+        return l2Insulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
+        this.l2Insulin = oobInsulin;
+    }
+     @Override
+     public String getTime() {
+        return l2Time;
+    }
+     @Override
+    public void setTime(String oobTime) {
+        this.l2Time = oobTime;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

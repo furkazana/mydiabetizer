@@ -6,8 +6,10 @@
 package beans;
 
 
+import ent.Bb;
 import ent.Diarydates;
 import ent.Oob;
+import ent.TimeSlots;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -87,8 +89,11 @@ public class diaryDatesBean
        }
          return nul;
     }
-    public boolean isTimeLine(int id,int qNumber)
-    {    List<Oob> ob;
+    public boolean isTimeLine(int id,int qNumber,String type)
+    {    DiaryFactory dFactory=new DiaryFactory();
+         
+         TimeSlots timeSlot=dFactory.getTimeSlots(type);
+        List<Bb> ob;
          boolean nul;
          
          try
@@ -114,15 +119,25 @@ public class diaryDatesBean
         
         return nul;
     }
-    public void addSingleLineResult(Oob o,Diarydates d)
+    public void addSingleLineResult(TimeSlots o,Diarydates d,String type)
     {
-         Oob oob=new Oob();
+        
+         DiaryFactory dFactory=new DiaryFactory();
+         
+         TimeSlots oob=dFactory.getTimeSlots(type);
          DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
          Date date = new Date();
-         oob.setOobUserDateId(d.getDiarydateId());
-         oob.setOobInsulin(o.getOobInsulin());
-         oob.setOobSugar(o.getOobSugar());
-         oob.setOobTime(dateFormat.format(date));
+         
+         oob.setUserDateId(d.getDiarydateId());
+         oob.setInsulin(o.getInsulin());
+         oob.setSugar(o.getSugar());
+         oob.setTime(dateFormat.format(date));
+         
+         
+       //  oob.setOobUserDateId(d.getDiarydateId());
+       //  oob.setOobInsulin(o.getOobInsulin());
+       //  oob.setOobSugar(o.getOobSugar());
+       //  oob.setOobTime(dateFormat.format(date));
          
          em.persist(oob);
         

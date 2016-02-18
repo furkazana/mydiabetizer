@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Dplus2.findByD2Sugar", query = "SELECT d FROM Dplus2 d WHERE d.d2Sugar = :d2Sugar"),
     @NamedQuery(name = "Dplus2.findByD2Insulin", query = "SELECT d FROM Dplus2 d WHERE d.d2Insulin = :d2Insulin"),
     @NamedQuery(name = "Dplus2.findByD2Time", query = "SELECT d FROM Dplus2 d WHERE d.d2Time = :d2Time")})
-public class Dplus2 implements Serializable {
+public class Dplus2 extends TimeSlots implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -85,7 +85,39 @@ public class Dplus2 implements Serializable {
     public void setD2Time(String d2Time) {
         this.d2Time = d2Time;
     }
-
+    @Override
+     public Integer getUserDateId() {
+        return d2UserDateId;
+    }
+      @Override
+     public void setUserDateId(Integer oobUserDateId) {
+        this.d2UserDateId = oobUserDateId;
+    }
+      @Override
+     public Double getSugar() {
+        return d2Sugar;
+    }
+     @Override
+     public void setSugar(Double oobSugar) {
+        this.d2Sugar = oobSugar;
+    }
+     @Override
+     public Integer getInsulin() {
+        return d2Insulin;
+    }
+     @Override
+     public void setInsulin(Integer oobInsulin) {
+        this.d2Insulin = oobInsulin;
+    }
+     @Override
+     public String getTime() {
+        return d2Time;
+    }
+     @Override
+    public void setTime(String oobTime) {
+        this.d2Time = oobTime;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
