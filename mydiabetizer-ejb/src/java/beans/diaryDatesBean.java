@@ -36,7 +36,7 @@ public class diaryDatesBean
     @PersistenceContext(unitName = "mydiabetizer-ejbPU")
     private EntityManager em;
     
-    private final String queries[]={"Oob.findByOobUserDateId","Bb.findByOobUserDateId","Bplus2.findByOobUserDateId",
+    private final String queries[]={"Oob.findByOobUserDateId","Bb.findByBbUserDateId","Bplus2.findByOobUserDateId",
                                     "Bl.findByOobUserDateId","Lplus2.findByOobUserDateId",
                                     "Bd.findByOobUserDateId","Dplus2.findByOobUserDateId",
                                     "Bbed.findByOobUserDateId","Random.findByOobUserDateId"};
@@ -44,7 +44,7 @@ public class diaryDatesBean
     private final String userIds[]={"oobUserDateId","bbUserDateId","b2UserDateId",
                                     "blUserDateId","l2UserDateId",
                                     "bdUserDateId","d2UserDateId",
-                                    "bbedUserDateId","randomUserDateId"};
+                                    "bbedUserDateId","randomUserDateId"};//need to be udated
     public Diarydates addUserAndDate(int id)
     {  
          Query q= em.createNamedQuery("Diarydates.findHighestTableNumber");
@@ -89,19 +89,19 @@ public class diaryDatesBean
        }
          return nul;
     }
-    public boolean isTimeLine(int id,int qNumber,String type)
-    {    DiaryFactory dFactory=new DiaryFactory();
-         
-         TimeSlots timeSlot=dFactory.getTimeSlots(type);
-        List<Bb> ob;
+    public boolean isTimeLine(int id,int qNumber)
+    {    
+         List<Bb> ob;
          boolean nul;
          
          try
         {
-           Query q= em.createNamedQuery(queries[qNumber]);
-                 q.setParameter(userIds[qNumber],id);
-                 
-            ob = q.getResultList();
+         // Query q= em.createNamedQuery(queries[qNumber]);
+           //     q.setParameter(userIds[qNumber],id); 
+           //     ob = q.getResultList();
+                Query q= em.createNamedQuery(queries[qNumber]);
+                q.setParameter(userIds[qNumber],id); 
+                ob = q.getResultList();
             
        int size = ob.size();
        if(size==0)
