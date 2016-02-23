@@ -6,8 +6,14 @@
 package patterns;
 
 import ent.Bb;
+import ent.Bbed;
+import ent.Bd;
+import ent.Bl;
 import ent.Bplus2;
+import ent.Dplus2;
+import ent.Lplus2;
 import ent.Oob;
+import ent.Random;
 import ent.TimeSlots;
 import java.io.Serializable;
 
@@ -40,10 +46,31 @@ public class DiaryFactory
           if(serType.equalsIgnoreCase("b2SL"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
          {
          return new Bplus2();
+         } 
+          if(serType.equalsIgnoreCase("blSL") || serType.equalsIgnoreCase("blINS") || serType.equalsIgnoreCase("blNotes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Bl();
          }
-         
-         
-         
+            if(serType.equalsIgnoreCase("l2SL") || serType.equalsIgnoreCase("l2INS") || serType.equalsIgnoreCase("l2Notes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Lplus2();
+         }
+              if(serType.equalsIgnoreCase("bdSL") || serType.equalsIgnoreCase("bdINS") || serType.equalsIgnoreCase("bdNotes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Bd();
+         }
+           if(serType.equalsIgnoreCase("d2SL") || serType.equalsIgnoreCase("d2INS") || serType.equalsIgnoreCase("d2Notes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Dplus2();
+         }
+          if(serType.equalsIgnoreCase("bbedSL") || serType.equalsIgnoreCase("bbedINS") || serType.equalsIgnoreCase("bbedNotes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Bbed();
+         }
+          if(serType.equalsIgnoreCase("rSL") || serType.equalsIgnoreCase("rINS") || serType.equalsIgnoreCase("rNotes"))//return OOB if any of the oob fields returns not null///taking the string of the suger input to creat te object
+         {
+         return new Random();
+         }
          
           return null;
     }

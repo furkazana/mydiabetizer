@@ -72,17 +72,21 @@ public class diaryHandler extends HttpServlet
             {
               diaryDateAndUser= diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
             }
+            int j=0;
+             for(int i=0 ;i<daylyresults.length;i++)
+                    {
           
-                if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1,daylyresults[3]))//hard coding diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1
-                {    
+           //  if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(), j))//hard coding diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1
+           //     {    
                     
-                    
+                   
+                   
                         Double convertedSugar;
                         int convertedInsulin;
                         
-                        String sugar = request.getParameter(daylyresults[3]);
-                        String insulin = request.getParameter(daylyresults[4]);//hard coding
-                        String note = request.getParameter(daylyresults[5]);
+                        String sugar = request.getParameter(daylyresults[i]);
+                        String insulin = request.getParameter(daylyresults[i+1]);//hard coding
+                        String note = request.getParameter(daylyresults[i+2]);
                         
                         if(insulin.equals(""))//catch exception if there is no input and set it up to 0
                         { convertedInsulin=0;}
@@ -98,18 +102,22 @@ public class diaryHandler extends HttpServlet
                        
                        // Oob o=new Oob();
                           DiaryFactory dFactory=new DiaryFactory();
-                          TimeSlots o = dFactory.getTimeSlots(daylyresults[3]);//hard coding
+                          TimeSlots o = dFactory.getTimeSlots(daylyresults[i]);//hard coding
                       
                       //  o.setOobSugar(convertedSugar);
                       //  o.setOobInsulin(convertedInsulin);
                           o.setSugar(convertedSugar);
                           o.setInsulin(convertedInsulin);
-                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser,daylyresults[3]);//hard coding
+                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser,daylyresults[i]);//hard coding
                       }
+                      i=i+2;
+                      j++;
+                    }
+              //  else {
+           // }
                }
             
-             else {
-            }
+          
    
          }
         
@@ -117,7 +125,7 @@ public class diaryHandler extends HttpServlet
         
         
         
-    }
+    
 
   
     

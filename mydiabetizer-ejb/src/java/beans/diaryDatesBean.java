@@ -7,6 +7,7 @@ package beans;
 
 
 import ent.Bb;
+import ent.Bplus2;
 import ent.Diarydates;
 import ent.Oob;
 import ent.TimeSlots;
@@ -36,10 +37,10 @@ public class diaryDatesBean
     @PersistenceContext(unitName = "mydiabetizer-ejbPU")
     private EntityManager em;
     
-    private final String queries[]={"Oob.findByOobUserDateId","Bb.findByBbUserDateId","Bplus2.findByOobUserDateId",
-                                    "Bl.findByOobUserDateId","Lplus2.findByOobUserDateId",
-                                    "Bd.findByOobUserDateId","Dplus2.findByOobUserDateId",
-                                    "Bbed.findByOobUserDateId","Random.findByOobUserDateId"};
+    private final String queries[]={"Oob.findByOobUserDateId","Bb.findByBbUserDateId","Bplus2.findByB2UserDateId",
+                                    "Bl.findByBlUserDateId","Lplus2.findByL2UserDateId",
+                                    "Bd.findByBdUserDateId","Dplus2.findByD2UserDateId",
+                                    "Bbed.findByBbedUserDateId","Random.findByRandomUserDateId"};
     
     private final String userIds[]={"oobUserDateId","bbUserDateId","b2UserDateId",
                                     "blUserDateId","l2UserDateId",
@@ -91,7 +92,7 @@ public class diaryDatesBean
     }
     public boolean isTimeLine(int id,int qNumber)
     {    
-         List<Bb> ob;
+         List<TimeSlots> ob;
          boolean nul;
          
          try
@@ -128,16 +129,17 @@ public class diaryDatesBean
          DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
          Date date = new Date();
          
+         if(type.equalsIgnoreCase("rSL"))//only in case values for a random input has been made,Random table has unique id
+         {  
+              Query q= em.createNamedQuery("Random.getHighestRandomID");
+              int id=(int) q.getSingleResult()+1;
+              oob.setRandomId(id);  
+         }
          oob.setUserDateId(d.getDiarydateId());
          oob.setInsulin(o.getInsulin());
          oob.setSugar(o.getSugar());
          oob.setTime(dateFormat.format(date));
-         
-         
-       //  oob.setOobUserDateId(d.getDiarydateId());
-       //  oob.setOobInsulin(o.getOobInsulin());
-       //  oob.setOobSugar(o.getOobSugar());
-       //  oob.setOobTime(dateFormat.format(date));
+        
          
          em.persist(oob);
         

@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Random.findByRandomId", query = "SELECT r FROM Random r WHERE r.randomId = :randomId"),
     @NamedQuery(name = "Random.findByRandomUserDateId", query = "SELECT r FROM Random r WHERE r.randomUserDateId = :randomUserDateId"),
     @NamedQuery(name = "Random.findByRandomSugar", query = "SELECT r FROM Random r WHERE r.randomSugar = :randomSugar"),
+    @NamedQuery(name = "Random.getHighestRandomID", query = "SELECT MAX(r.randomId) FROM Random r"),
     @NamedQuery(name = "Random.findByRandomInsulin", query = "SELECT r FROM Random r WHERE r.randomInsulin = :randomInsulin"),
     @NamedQuery(name = "Random.findByRandomTime", query = "SELECT r FROM Random r WHERE r.randomTime = :randomTime")})
 public class Random extends TimeSlots  implements Serializable {
