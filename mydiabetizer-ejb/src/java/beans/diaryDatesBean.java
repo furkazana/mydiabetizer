@@ -103,7 +103,7 @@ public class diaryDatesBean
                 Query q= em.createNamedQuery(queries[qNumber]);
                 q.setParameter(userIds[qNumber],id); 
                 ob = q.getResultList();
-            
+      
        int size = ob.size();
        if(size==0)
        {
@@ -117,6 +117,10 @@ public class diaryDatesBean
            nul=true;//return true if catch ejb exception -posible when can find data in the data base
           
        }
+        if(qNumber==8)//always return true if its about random//random can have multiple inputs for same user on a same date
+        {
+            nul=true;
+        }
         
         return nul;
     }

@@ -40,18 +40,7 @@ public class diaryHandler extends HttpServlet
             throws ServletException, IOException
     {
         int lenth=daylyresults.length;
-      //  for(int i=0;i<lenth-3;i++)
-      //  {
-            
-          //  if(i==0 || i+1==0 || i+2==0)
-         //   {}
-          //  else
-          //  {
-                
-           // }
-      //  }
-        
-        
+     
     }
 
    
@@ -66,18 +55,21 @@ public class diaryHandler extends HttpServlet
            response.sendRedirect(request.getContextPath() + "/register.jsp");
 
     } else 
-         {    Diarydates diaryDateAndUser = null;
+         {     Diarydates diaryDateAndUser = null;
+              //checks if there is already results for that user for this current date
               diaryDateAndUser =  diaryDatesBean.resultExistForTheDay((int) session.getAttribute("userIs"));
             if(diaryDateAndUser==null) 
-            {
+            { //if there is no result found ad result for the user and the current date 
               diaryDateAndUser= diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"));
             }
             int j=0;
+            //loop though all the inputs fields and if there is an input adding it to the DB
              for(int i=0 ;i<daylyresults.length;i++)
                     {
-          
-           //  if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(), j))//hard coding diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1
-           //     {    
+             //check if there is already result for the time slot for the user for the current date
+             //if there is already an input not doing anything
+             if(diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(), j))//hard coding diaryDatesBean.isTimeLine(diaryDateAndUser.getDiarydateId(),1
+                {    
                     
                    
                    
@@ -91,7 +83,9 @@ public class diaryHandler extends HttpServlet
                         if(insulin.equals(""))//catch exception if there is no input and set it up to 0
                         { convertedInsulin=0;}
                         else
-                        {convertedInsulin=Integer.parseInt(insulin); }//if there is input converted it.
+                        {   //trowing error if the input is double//exception needs to be considered and refer to an error
+                            convertedInsulin=Integer.parseInt(insulin); }//if there is input converted it.//this
+                        
                         if(sugar.equals(""))
                         { convertedSugar=0.0;}
                         else
@@ -100,26 +94,31 @@ public class diaryHandler extends HttpServlet
                       if(convertedInsulin!=0 || convertedSugar!=0 )
                       {   
                        
-                       // Oob o=new Oob();
-                          DiaryFactory dFactory=new DiaryFactory();
-                          TimeSlots o = dFactory.getTimeSlots(daylyresults[i]);//hard coding
                       
-                      //  o.setOobSugar(convertedSugar);
-                      //  o.setOobInsulin(convertedInsulin);
+                          DiaryFactory dFactory=new DiaryFactory();
+                          TimeSlots o = dFactory.getTimeSlots(daylyresults[i]);
+                 
                           o.setSugar(convertedSugar);
                           o.setInsulin(convertedInsulin);
-                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser,daylyresults[i]);//hard coding
+                        diaryDatesBean.addSingleLineResult(o,diaryDateAndUser,daylyresults[i]);
                       }
                       i=i+2;
                       j++;
                     }
-              //  else {
-           // }
-               }
+               else
+             {
+                      i=i+2;
+                      j++;
+             }
+                    }
+          }
+    }
+              
+               
             
           
    
-         }
+         
         
         
         
