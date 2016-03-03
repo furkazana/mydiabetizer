@@ -4,6 +4,5 @@
     Author     : Tsvetelin
 --%>
 
-<script src="./js/angular.min.js"></script>
 </body>
 </html>

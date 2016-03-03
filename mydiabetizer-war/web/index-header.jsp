@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20">
-                        <span class="logo white-text">My Diabetizer</span>
+                        <span class="logo main-text-color">My Diabetizer</span>
                     </div>
                 </div>
             </div>

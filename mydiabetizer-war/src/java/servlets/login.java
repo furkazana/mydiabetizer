@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.json.JsonObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -73,6 +74,8 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+         
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -101,9 +104,9 @@ public class login extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/home.jsp");
             
         }else{
+             
             response.sendRedirect(request.getContextPath() + "/register.jsp");
-            
-          
+           
             
         }
           

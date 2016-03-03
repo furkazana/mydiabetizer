@@ -37,6 +37,7 @@ public class SignUp extends HttpServlet
             throws ServletException, IOException  
     {
         
+        
         String firstName=null;
         String lastName=null;
         String email=null;

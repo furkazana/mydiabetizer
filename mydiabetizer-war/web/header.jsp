@@ -36,7 +36,7 @@ for(Cookie cookie : cookies){
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 margin-top-20">
-                        <span class="logo white-text">My Diabetizer</span>
+                        <span class="logo main-text-color">My Diabetizer</span>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">
@@ -47,7 +47,7 @@ for(Cookie cookie : cookies){
                                 out.println("<li><a href=\"./account.jsp\">My account</a></li>");
                             %> 
                             <!-- <li> <%=userName %></li> -->
-                            <a class="btn btn-primary btn-transparent pull-right" href="/logout">Log Out</a>            
+                            <a class="btn btn-primary btn-transparent pull-right" action="logout" method="post" >Log Out</a>            
                         </ul>
                     </div>
                 </div>

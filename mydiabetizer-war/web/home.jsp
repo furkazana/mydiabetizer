@@ -28,27 +28,27 @@
 %>
 <jsp:include page="header.jsp" />
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100" >
-    <h3 class="white-text">Daily organizer</h3>
+    <h3 class="main-text-color">Daily organizer</h3>
     <div class="col-xs-12 col-sm-12 col-md-7 margin-top-20">
         <form class="form-inline" action="diaryHandler" method="post">
             <div class="form-group col-md-12">
                 <div class="pull-left">
-                    <label class="control-label white-text do-label first-label">Out of bed</label>
+                    <label class="control-label main-text-color do-label first-label">Out of bed</label>
                     <div class="narrow">
-                        <label class="control-label white-text margin-left-10">SL</label>
+                        <label class="control-label main-text-color margin-left-10">SL</label>
                         <input type="text" class="form-control first-input" name="oobSL">
                     </div>
                     <div class="narrow">
-                        <label class="control-label white-text margin-left-10">Ins</label>
+                        <label class="control-label main-text-color margin-left-10">Ins</label>
                         <input type="text" class="form-control second-input" name="oobINS">
                     </div>
                     <div class="wide">
-                        <label class="control-label white-text margin-left-10">Notes</label>
+                        <label class="control-label main-text-color margin-left-10">Notes</label>
                         <input type="text" class="form-control third-input" name="oobNotes">
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">BB</label>
+                    <label class="control-label main-text-color do-label">BB</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="bbSL">
                     </div>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">B+2</label>
+                    <label class="control-label main-text-color do-label">B+2</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="b2SL">
                     </div>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">BL</label>
+                    <label class="control-label main-text-color do-label">BL</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="blSL">
                     </div>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">L+2</label>
+                    <label class="control-label main-text-color do-label">L+2</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="l2SL">
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">BD</label>
+                    <label class="control-label main-text-color do-label">BD</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="bdSL">
                     </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">D+2</label>
+                    <label class="control-label main-text-color do-label">D+2</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="d2SL">
                     </div>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">BBed</label>
+                    <label class="control-label main-text-color do-label">BBed</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="bbedSL">
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="pull-left">
-                    <label class="control-label white-text do-label">Random</label>
+                    <label class="control-label main-text-color do-label">Random</label>
                     <div class="narrow">
                         <input type="text" class="form-control first-input" name="rSL">
                     </div>
