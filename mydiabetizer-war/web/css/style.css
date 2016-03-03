@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : Rock n Roll
 */
 body {font-family: 'Droid Sans', sans-serif;
-      background: url("../img/bg1.jpg");
+      background: #F7F7F7;
       background-size: cover;
 }
 
@@ -28,17 +28,18 @@ body {font-family: 'Droid Sans', sans-serif;
     font-size: 35px;
 }
 
-a.white-text:hover {
-    color : #f9f9f9;
+a.main-text-color:hover {
+    color : #0098D0;
 }
 
-.white-text {
-    color: #f9f9f9;
+.main-text-color {
+    color: #0098D0;
 }
 
 .btn-transparent {
     background: transparent;
-    border-color: #f9f9f9;
+    border-color: #0098D0;
+    color: #0098D0;
 }
 
 section.login, section.register {
@@ -56,7 +57,7 @@ section.login, section.register {
 }
 
 .main-menu li a,  .main-menu li a:hover {
-    color: #f9f9f9;
+    color: #0098D0;
     font-size: 18px;
 }
 
@@ -120,4 +121,14 @@ section.login, section.register {
 .wide {
     width: 415px;
     float: right;
+}
+
+.category-sub-list-input {
+    width: 190px;
+}
+
+.meal-list {
+    min-height: 220px;
+    background: #fff;
+    color: #555;
 }
