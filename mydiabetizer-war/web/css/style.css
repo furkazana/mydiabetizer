@@ -132,3 +132,14 @@ section.login, section.register {
     background: #fff;
     color: #555;
 }
+
+.add-grams {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.meal-list {
+    padding: 10px 10px;
+    list-style-type: none;
+    font-size: 16px;
+}
