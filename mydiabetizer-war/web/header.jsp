@@ -41,7 +41,7 @@ for(Cookie cookie : cookies){
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">
                             <li><a href="./home.jsp">Home</a></li>
-                            <li><a href="./calculator.jsp">Calculator</button></a></li>
+                            <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
                             <%if(session.getAttribute("user") != null)
                                 out.println("<li><a href=\"./account.jsp\">My account</a></li>");

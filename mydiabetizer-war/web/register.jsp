@@ -3,7 +3,6 @@
     Created on : Jun 22, 2015, 11:31:54 PM
     Author     : Tsvetelin
 --%>
-<jsp:forward page="/calculator.jsp" />
 <jsp:include page="index-header.jsp" />
 
 <%

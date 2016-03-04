@@ -25,12 +25,12 @@
         });
         
         $(".add-to-meal-list").on("click", function() {
-            var splitChar = "(",
+            var splitChar = "-",
                 text = $(this).parent().next().text(),
                 result = text.split(splitChar),
                 output = result[0] + $(this).prev().val();
                 postArr;
-                $(".meal-list").append("<li>" + output + "- grams</li>");
+                $(".meal-list").append("<li>" + output + " grams</li>");
                 
         });
     });
@@ -40,7 +40,7 @@
         };
         $.ajax({
             type: "POST",
-            url: "/mydiabetizer-war/foodHandler",
+            url: "/mydiabetizer-war/calculator",
             data: JsonObj,
             contentType:"application/json; charset=utf-8",
             dataType: "json",

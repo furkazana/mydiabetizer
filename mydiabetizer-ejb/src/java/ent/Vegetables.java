@@ -28,9 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vegetables.findAll", query = "SELECT v FROM Vegetables v"),
     @NamedQuery(name = "Vegetables.findByVegId", query = "SELECT v FROM Vegetables v WHERE v.vegId = :vegId"),
     @NamedQuery(name = "Vegetables.findByVegTitle", query = "SELECT v FROM Vegetables v WHERE v.vegTitle = :vegTitle"),
+    @NamedQuery(name = "Vegetables.getHighestVegID", query = "SELECT MAX(v.vegId) FROM Vegetables v"),
     @NamedQuery(name = "Vegetables.findByVegGrams", query = "SELECT v FROM Vegetables v WHERE v.vegGrams = :vegGrams"),
-    @NamedQuery(name ="Vegetables.getHighestVegID", query = "SELECT MAX(v.vegId) FROM Vegetables v"),
-    @NamedQuery(name = "Vegetables.findByVegCarbs", query = "SELECT v FROM Vegetables v WHERE v.vegCarbs = :vegCarbs")})
+    @NamedQuery(name = "Vegetables.findByVegCarbs", query = "SELECT v FROM Vegetables v WHERE v.vegCarbs = :vegCarbs"),
+    @NamedQuery(name = "Vegetables.findByVegMeasurements", query = "SELECT v FROM Vegetables v WHERE v.vegMeasurements = :vegMeasurements")})
 public class Vegetables implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,6 +47,9 @@ public class Vegetables implements Serializable {
     private Integer vegGrams;
     @Column(name = "VEG_CARBS")
     private Integer vegCarbs;
+    @Size(max = 50)
+    @Column(name = "VEG_MEASUREMENTS")
+    private String vegMeasurements;
 
     public Vegetables() {
     }
@@ -84,6 +88,14 @@ public class Vegetables implements Serializable {
 
     public void setVegCarbs(Integer vegCarbs) {
         this.vegCarbs = vegCarbs;
+    }
+
+    public String getVegMeasurements() {
+        return vegMeasurements;
+    }
+
+    public void setVegMeasurements(String vegMeasurements) {
+        this.vegMeasurements = vegMeasurements;
     }
 
     @Override

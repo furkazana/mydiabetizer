@@ -6,6 +6,8 @@
 package beans;
 
 import ent.Fruits;
+import ent.Meats;
+import ent.Starches;
 import ent.Vegetables;
 import java.util.List;
 import javax.ejb.Local;
@@ -18,7 +20,12 @@ import javax.ejb.Local;
 public interface FoodHandlerBeanLocal {
 
     public void addVeg(Vegetables v);
-    public void addFruits(Fruits v);
+    public void addFruits(Fruits f);
+    public void addStarches(Starches s);
+    public void addMeats(Meats m);
     public List<Fruits> getAllFruits();
+    public List<Starches> getAllStarches();
+    public List<Meats> getAllMeats();
+    public List<Vegetables> getAllVegetables();
     
 }
