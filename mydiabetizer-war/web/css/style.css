@@ -73,7 +73,6 @@ section.login, section.register {
 
 .form-inline .form-control {
     width: 100%;
-    border-bottom: 0 none;
     box-shadow: none;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
@@ -145,6 +144,10 @@ section.login, section.register {
     padding: 10px 10px;
     list-style-type: none;
     font-size: 14px;
+}
+
+.meal-list li {
+    padding: 4px 0px;
 }
 
 .errorTooltip {
