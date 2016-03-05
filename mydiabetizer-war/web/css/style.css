@@ -17,7 +17,9 @@ body {font-family: 'Droid Sans', sans-serif;
 
 .margin-left-10 {margin-left: 10px;}
 .margin-right-10 {margin-right: 10px;}
-
+.padding-left-0 {
+    padding:0px;
+}
 .padding-0 {
     padding:0px;
 }
@@ -134,12 +136,35 @@ section.login, section.register {
 }
 
 .add-grams {
-    font-size: 18px;
+    font-size: 10px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .meal-list {
     padding: 10px 10px;
     list-style-type: none;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.errorTooltip {
+    background: #e2e2e2 none repeat scroll 0 0;
+    color: #fc4e4e;
+    min-height: 28px;
+    left: 20px;
+    padding: 4px 8px;
+    position: absolute;
+    top: -47%;
+}
+
+.errorTooltip:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 100%;
+    width: 0; 
+    height: 0; 
+    border-left: 0px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #E2E2E2;
 }
