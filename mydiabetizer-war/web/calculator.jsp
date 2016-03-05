@@ -24,14 +24,14 @@
 
 <div class="list-group margin-top-100 col-xs-12 col-sm-12 col-md-3">
     <h4 class="main-text-color">Choose a category</h4>
-    <button type="button" class="category-list list-group-item" data-type="fatsAndSweets">Fats and sweets</button>
-    <button type="button" class="category-list list-group-item" data-type="milk">Milk</button>
-    <button type="button" class="category-list list-group-item" data-type="meat">Meat</button>
-    <button type="button" class="category-list list-group-item" data-type="vegetables">Vegetables</button>
-    <button type="button" class="category-list list-group-item" data-type="fruits">Fruits</button>
-    <button type="button" class="category-list list-group-item" data-type="starches">Starches</button>
+    <button type="button" class="category-list-item list-group-item" data-type="fatsAndSweets">Fats and sweets</button>
+    <button type="button" class="category-list-item list-group-item" data-type="milk">Milk</button>
+    <button type="button" class="category-list-item list-group-item" data-type="meats">Meat</button>
+    <button type="button" class="category-list-item list-group-item" data-type="vegetables">Vegetables</button>
+    <button type="button" class="category-list-item list-group-item" data-type="fruits">Fruits</button>
+    <button type="button" class="category-list-item list-group-item" data-type="starches">Starches</button>
 </div>
-<div class="list-group margin-top-100 col-xs-12 col-sm-12 col-md-4">
+<div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4 hide">
     <div data-sub-type="fruits">
         <h4 class="main-text-color">Fruits</h4>
 <%
@@ -51,60 +51,74 @@
 %>
     </div>
 </div>
-<!--<div class="options list-group margin-top-100 col-xs-12 col-sm-12 col-md-4">
-    <div class="list-group col-xs-12 col-sm-12 col-md-12 hide" data-sub-type="vegetables">
-        <h4 class="main-text-color">Vegetables</h4>
-        <div class="list-group-item">
+<div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
+    <div data-sub-type="starches">
+        <h4 class="main-text-color">Starches</h4>
+<%
+    for(Starches starch : starchesList) {
+%>
+        <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" />grams
+                <input class="category-sub-list-input" /> grams
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
-            <button type="button" class="category-sub-list-button">Artichoke(120g approx 1 medium) 
-                <span class="add-grams">+</span>
-            </button>
+            <div>
+                <%= starch.getStarchTitle()+ " - " + starch.getStarchGrams()+"g approx. " + starch.getStarchMeasurements()%>
+                <span class="add-grams glyphicon glyphicon-plus pull-right"></span>
+            </div>
         </div>
-        <button type="button" class="category-sub-list-button">Asparagus (60g approx. 4 spears) <span class="add-grams">+</span></button>
-        <button type="button" class="category-sub-list-button">Avocado   (60g approx. 4 spears)   <span class="add-grams">+</span></button>
+<%    }
+%>
+    </div>
+</div>
+<div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
+    <div data-sub-type="meats">
+        <h4 class="main-text-color">Meat</h4>
+<%
+    for(Meats meat : meatsList) {
+%>
+        <div class="category-list list-group-item">
+            <div class="hide">
+                <input class="category-sub-list-input" /> grams
+                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+            </div>
+            <div>
+                <%= meat.getMeatTitle()+ " - " + meat.getMeatGrams()+"g approx. " + meat.getMeatMeasurements()%>
+                <span class="add-grams glyphicon glyphicon-plus pull-right"></span>
+            </div>
         </div>
+<%    }
+%>
+    </div>
+</div>
+<div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
+    <div data-sub-type="vegetables">
+        <h4 class="main-text-color">Meat</h4>
+<%
+    for(Vegetables vegetable : vegList) {
+%>
+        <div class="category-list list-group-item">
+            <div class="hide">
+                <input class="category-sub-list-input" /> grams
+                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+            </div>
+            <div>
+                <%= vegetable.getVegTitle()+ " - " + vegetable.getVegGrams()+"g approx. " + vegetable.getVegMeasurements()%>
+                <span class="add-grams glyphicon glyphicon-plus pull-right"></span>
+            </div>
+        </div>
+<%    }
+%>
     </div>
 </div>
 
-<div class="options list-group margin-top-100 col-xs-12 col-sm-12 col-md-4">
-    <div class="list-group col-xs-12 col-sm-12 col-md-12 hide" data-sub-type="milk">
-        <h4 class="main-text-color">Milk</h4>
-        <div class="list-group-item">
-            <div class="hide">
-                <input class="category-sub-list-input" />grams
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
-            </div>
-            <button type="button" class="category-sub-list-button">Milk, chocolate (250g approx. 1 cup) 
-                <span class="add-grams">+</span>
-            </button>
-     
-        <button type="button" class="category-sub-list-button">Milk, white (244g approx. 1 cup) <span class="add-grams">+</span></button>
-        <button type="button" class="category-sub-list-button">Milkshake, thick <span class="add-grams">+</span></button>
-      </div>
-        </div>
-</div>-->
-
-<div class="meal-list-div margin-top-100 col-xs-12 col-sm-12 col-md-4 hide">
+<div class="meal-list-div margin-top-100 col-xs-12 col-sm-12 col-md-4 hide padding-left-0">
     <div class="list-group col-xs-12 col-sm-12 col-md-12">
         <h4 class="main-text-color">Meal</h4>
-        <ul class="meal-list">
-            
+        <ul class="meal-list">  
         </ul>
+        <button class="save-meal btn btn-primary btn-transparent pull-right">Save</button>    
     </div>
 </div>
 <button class="clickMe">Click me</button>
-<% 
-    
-    
-    //FoodHandlerBeanLocal foodHandlerBean = new FoodHandlerBean();
-    
-    
-  //List <Fruits> fruitsList;
- // fruitsList= foodHandlerBean.getAllFruits();
-  // <jsp:include page="header.jsp" />
-//<jsp:useBean id="foodHandlerBean" class="beans.FoodHandlerBean"/>
-%>
 <jsp:include page="calculator-footer.jsp" />

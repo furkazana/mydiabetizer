@@ -47,7 +47,7 @@ for(Cookie cookie : cookies){
                                 out.println("<li><a href=\"./account.jsp\">My account</a></li>");
                             %> 
                             <!-- <li> <%=userName %></li> -->
-                            <a class="btn btn-primary btn-transparent pull-right" action="logout" method="post" >Log Out</a>            
+                            <a href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>            
                         </ul>
                     </div>
                 </div>
