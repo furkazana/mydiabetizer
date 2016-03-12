@@ -5,7 +5,9 @@
  */
 package beans;
 
+import ent.Beverages;
 import ent.Diabetics;
+import ent.Fatsandsweets;
 import ent.Fruits;
 import ent.Meats;
 import ent.Starches;
@@ -95,14 +97,48 @@ public class FoodHandlerBean implements FoodHandlerBeanLocal
          return meats;
     }
     
+     @Override
+    public void addBeverages(Beverages b)
+    {
+        Query q= em.createNamedQuery("Beverages.getHighestBevID");
+        int id=(int) q.getSingleResult()+1;
+        b.setBevId(id);
+        em.persist(b); 
+    }
+
+    @Override
+    public List<Beverages> getAllBeverages()
+    {
+         Query qr = em.createNamedQuery("Beverages.findAll");
+         List <Beverages> bev= qr.getResultList();
+         return bev;
+    }
     
-    
-    
+     @Override
+    public void addFatsandsweets(Fatsandsweets fs)
+    {
+         Query q= em.createNamedQuery("Fatsandsweets.getHighestFnsID");
+        int id=(int) q.getSingleResult()+1;
+        fs.setFnsId(id);
+        em.persist(fs);
+    }
+
+    @Override
+    public List<Fatsandsweets> getAllFatsandsweets()
+    {
+        Query qr = em.createNamedQuery("Fatsandsweets.findAll");
+         List <Fatsandsweets> fs= qr.getResultList();
+         return fs;
+    }
     
     
     public void persist(Object object) {
         em.persist(object);
     }
+
+   
+
+   
 
     
 
