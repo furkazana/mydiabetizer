@@ -25,7 +25,6 @@
      List<Fatsandsweets> FatsandsweetsList = (List<Fatsandsweets>) request.getAttribute("FatsandsweetsList");
 %>
 
-
 <div class="list-group margin-top-100 col-xs-12 col-sm-12 col-md-3">
     <h4 class="main-text-color">Choose a category</h4>
     <button type="button" class="category-list-item list-group-item" data-type="fatsAndSweets">FatsAndSweets</button>
@@ -38,7 +37,7 @@
 
  <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="fatsAndSweets">
-        <h4 class="main-text-color">FatsAndSweets</h4>
+        <h4 class="cat-name main-text-color">FatsAndSweets</h4>
 <%
     for(Fatsandsweets fatsandsweets : FatsandsweetsList) {
 %>
@@ -60,7 +59,7 @@
 
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4 hide">
     <div data-sub-type="fruits">
-        <h4 class="main-text-color">Fruits</h4>
+        <h4 class="cat-name main-text-color">Fruits</h4>
 <%
     for(Fruits fruit : fruitsList) {
 %>
@@ -80,7 +79,7 @@
 </div>
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="starches">
-        <h4 class="main-text-color">Starches</h4>
+        <h4 class="cat-name main-text-color">Starches</h4>
 <%
     for(Starches starch : starchesList) {
 %>
@@ -100,7 +99,7 @@
 </div>
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="meats">
-        <h4 class="main-text-color">Meat</h4>
+        <h4 class="cat-name main-text-color">Meat</h4>
 <%
     for(Meats meat : meatsList) {
 %>
@@ -120,7 +119,7 @@
 </div>
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="vegetables">
-        <h4 class="main-text-color">Meat</h4>
+        <h4 class="cat-name main-text-color">Vegetables</h4>
 <%
     for(Vegetables vegetable : vegList) {
 %>
@@ -140,7 +139,7 @@
 </div>
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="beverages">
-        <h4 class="main-text-color">Beverages</h4>
+        <h4 class="cat-name main-text-color">Beverages</h4>
 <%
     for(Beverages beverage : BeveragesList) {
 %>
