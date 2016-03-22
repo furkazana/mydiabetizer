@@ -24,7 +24,7 @@
             parent.addClass("hide");
         });
 
-        var postData = "", categoryName;
+        var postData = "";
         $(".add-to-meal-list").on("click", function () {
             var _this = $(this),
                     regex = /^\d+$/,
