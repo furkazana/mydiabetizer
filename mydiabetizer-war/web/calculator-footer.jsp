@@ -23,8 +23,8 @@
             parent.prev().children(".category-sub-list-input").focus();
             parent.addClass("hide");
         });
-        
-        var postData = "";
+
+        var postData = "", categoryName;
         $(".add-to-meal-list").on("click", function () {
             var _this = $(this),
                     regex = /^\d+$/,
@@ -36,9 +36,8 @@
                         text = _this.parent().next().text(),
                         result = text.split(splitChar),
                         output = result[0] + " - " + inputValue;
-                postData += categoryName + ":" + result[0] + ":" + inputValue + ";";
-                console.log(categoryName + ":" + result[0] + ":" + inputValue + ";");
-                $(".meal-list").append("<li>" + output + " grams</li>");
+                $(".meal-list").append("<li class=\"meal-list-item\" data-category=\"" + categoryName + "\">" +
+                        output + " grams <span class=\"pull-right remove-meal-list-item\">x<span></li>");
                 input.val("");
                 _this.parent().addClass("hide");
                 _this.parent().next().removeClass("hide");
@@ -48,16 +47,23 @@
             }
         });
         $(".save-meal").on("click", function () {
-            $.ajax({
-                type: "POST",
-                url: "/mydiabetizer-war/calculator",
-                data:{postData:postData},
-                success: function (data) {
-                    // TODO
-                    $(".result").html(data);
-                    console.log(data);
-                }
+            var splitChar = "-",result;
+            $(".meal-list-item").each(function () {
+                result = $(this).text().split(splitChar);
+                postData += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
             });
+            
+            console.log(postData);
+//            $.ajax({
+//                type: "POST",
+//                url: "/mydiabetizer-war/calculator",
+//                data: {postData: postData},
+//                success: function (data) {
+//                    // TODO
+//                    $(".result").html(data);
+//                    console.log(data);
+//                }
+//            });
         });
     });
     function makeTest() {
