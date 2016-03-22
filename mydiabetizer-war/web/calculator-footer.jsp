@@ -54,16 +54,16 @@
             });
             
             console.log(postData);
-//            $.ajax({
-//                type: "POST",
-//                url: "/mydiabetizer-war/calculator",
-//                data: {postData: postData},
-//                success: function (data) {
-//                    // TODO
-//                    $(".result").html(data);
-//                    console.log(data);
-//                }
-//            });
+            $.ajax({
+                type: "POST",
+                url: "/mydiabetizer-war/calculator",
+                data: {postData: postData},
+                success: function (data) {
+                    // TODO
+                    $(".result").html(data);
+                    console.log(data);
+                }
+            });
         });
     });
     function makeTest() {
