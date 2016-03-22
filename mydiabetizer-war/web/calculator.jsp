@@ -29,7 +29,7 @@
     <h4 class="main-text-color">Choose a category</h4>
     <button type="button" class="category-list-item list-group-item" data-type="fatsAndSweets">FatsAndSweets</button>
     <button type="button" class="category-list-item list-group-item" data-type="beverages">Beverages</button>
-    <button type="button" class="category-list-item list-group-item" data-type="meats">Meat</button>
+    <button type="button" class="category-list-item list-group-item" data-type="meats">Meats</button>
     <button type="button" class="category-list-item list-group-item" data-type="vegetables">Vegetables</button>
     <button type="button" class="category-list-item list-group-item" data-type="fruits">Fruits</button>
     <button type="button" class="category-list-item list-group-item" data-type="starches">Starches</button>
@@ -99,7 +99,7 @@
 </div>
 <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="meats">
-        <h4 class="cat-name main-text-color">Meat</h4>
+        <h4 class="cat-name main-text-color">Meats</h4>
 <%
     for(Meats meat : meatsList) {
 %>

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Fruits.getHighestFrID", query = "SELECT MAX(f.fruitId) FROM Fruits f"),
     @NamedQuery(name = "Fruits.findByFruitGrams", query = "SELECT f FROM Fruits f WHERE f.fruitGrams = :fruitGrams"),
     @NamedQuery(name = "Fruits.findByFruitCarbs", query = "SELECT f FROM Fruits f WHERE f.fruitCarbs = :fruitCarbs")})
-public class Fruits implements Serializable {
+public class Fruits extends Food   implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,7 +97,27 @@ public class Fruits implements Serializable {
     public void setFruitCarbs(Integer fruitCarbs) {
         this.fruitCarbs = fruitCarbs;
     }
+    @Override
+     public int getId() {
+        return fruitId;
+    }
 
+    @Override
+    public String getTitle() {
+        return fruitTitle;
+    }
+    @Override
+    public String getMesurments() {
+        return fruitMeasurement;
+    }
+    @Override
+    public int getCarbs() {
+        return fruitCarbs;
+    }
+    @Override
+    public int getGrams() {
+        return fruitGrams;
+    }
     @Override
     public int hashCode() {
         int hash = 0;

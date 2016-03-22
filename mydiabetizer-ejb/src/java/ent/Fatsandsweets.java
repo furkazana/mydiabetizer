@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Fatsandsweets.findByFnsMeasurements", query = "SELECT f FROM Fatsandsweets f WHERE f.fnsMeasurements = :fnsMeasurements"),
     @NamedQuery(name = "Fatsandsweets.findByFnsGrams", query = "SELECT f FROM Fatsandsweets f WHERE f.fnsGrams = :fnsGrams"),
     @NamedQuery(name = "Fatsandsweets.findByFnsCarbs", query = "SELECT f FROM Fatsandsweets f WHERE f.fnsCarbs = :fnsCarbs")})
-public class Fatsandsweets implements Serializable {
+public class Fatsandsweets extends Food implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,7 +97,27 @@ public class Fatsandsweets implements Serializable {
     public void setFnsCarbs(Integer fnsCarbs) {
         this.fnsCarbs = fnsCarbs;
     }
+     @Override
+     public int getId() {
+        return fnsId;
+    }
 
+    @Override
+    public String getTitle() {
+        return fnsTitle;
+    }
+    @Override
+    public String getMesurments() {
+        return fnsMeasurements;
+    }
+    @Override
+    public int getCarbs() {
+        return fnsCarbs;
+    }
+    @Override
+    public int getGrams() {
+        return fnsGrams;
+    }
     @Override
     public int hashCode() {
         int hash = 0;

@@ -8,6 +8,7 @@ package servlets;
 import beans.FoodHandlerBeanLocal;
 import ent.Beverages;
 import ent.Fatsandsweets;
+import ent.Food;
 import ent.Fruits;
 import ent.Meats;
 import ent.Starches;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
+import statics.CarbsHandler;
 //import com.google.gson.Gson;
 
 /**
@@ -60,7 +62,11 @@ public class FoodHandler extends HttpServlet {
             throws ServletException, IOException {
 
       String data = request.getParameter("postData");
-      request.setAttribute("test", data);
+      CarbsHandler ch=new CarbsHandler();
+      String carbs=ch.Run(data);
+   // Food f =ch.Run(data);
+   
+      request.setAttribute("test", carbs);
       this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
 //       
 

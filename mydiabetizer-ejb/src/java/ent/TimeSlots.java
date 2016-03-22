@@ -16,6 +16,7 @@ public abstract class TimeSlots
  private   String time;
  private   int insulin;
  private   int randomId;
+ 
     public Double getSugar() {
         return sugar;
     }
