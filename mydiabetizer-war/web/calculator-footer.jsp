@@ -24,11 +24,10 @@
             parent.addClass("hide");
         });
 
-        var postData = "";
         $(".add-to-meal-list").on("click", function () {
             var _this = $(this),
                     regex = /^\d+$/,
-                    input = $(this).prev(),
+                    input = $(this).prev().prev(),
                     inputValue = input.val(),
                     categoryName = _this.parent().parent().parent().children(".cat-name").text();
             if (regex.test(inputValue)) {
@@ -37,7 +36,7 @@
                         result = text.split(splitChar),
                         output = result[0] + " - " + inputValue;
                 $(".meal-list").append("<li class=\"meal-list-item\" data-category=\"" + categoryName + "\">" +
-                        output + " grams <span class=\"pull-right remove-meal-list-item\">x<span></li>");
+                        output + " " + _this.parent().children(".qty").text() + " <span class=\"pull-right remove-meal-list-item\">x<span></li>");
                 input.val("");
                 _this.parent().addClass("hide");
                 _this.parent().next().removeClass("hide");
@@ -46,24 +45,37 @@
                 _this.parent().append(errorSpan);
             }
         });
+
+        $(".meal-list").on("click", ".remove-meal-list-item", function () {
+            $(this).parent().remove();
+            console.log("executed");
+        });
+        
         $(".save-meal").on("click", function () {
-            var splitChar = "-",result;
-            $(".meal-list-item").each(function () {
-                result = $(this).text().split(splitChar);
-                postData += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
-            });
-            
-            console.log(postData);
-            $.ajax({
-                type: "POST",
-                url: "/mydiabetizer-war/calculator",
-                data: {postData: postData},
-                success: function (data) {
-                    // TODO
-                    $(".result").html(data);
-                    console.log(data);
-                }
-            });
+            if ($(".meal-list").children().length > 0) {
+                var postData = {}, mealData, ill, activity, splitChar = "-";
+                $(".meal-list-item").each(function () {
+                    var result = $(this).text().split(splitChar);
+                    mealData += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
+                });
+                
+                ill = $(".ill").filter(":checked").val(),
+                activity = $(".activity").filter(":checked").val();
+                postData.mealData = mealData;
+                postData.ill = ill;
+                postData.activity = activity;
+                $.ajax({
+                    type: "POST",
+                    url: "/mydiabetizer-war/calculator",
+                    dataType: "json",
+                    data: JSON.stringify(postData),
+                    success: function (data) {
+                        // TODO
+                        $(".result").html(data);
+                        console.log(data);
+                    }
+                });
+            }
         });
     });
     function makeTest() {

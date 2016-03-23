@@ -171,3 +171,5 @@ section.login, section.register {
     border-right: 10px solid transparent;
     border-top: 10px solid #E2E2E2;
 }
+
+.remove-meal-list-item {cursor: pointer}

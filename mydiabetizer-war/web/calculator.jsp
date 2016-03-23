@@ -33,6 +33,7 @@
     <button type="button" class="category-list-item list-group-item" data-type="vegetables">Vegetables</button>
     <button type="button" class="category-list-item list-group-item" data-type="fruits">Fruits</button>
     <button type="button" class="category-list-item list-group-item" data-type="starches">Starches</button>
+    <button type="button" class="category-list-item list-group-item" data-type="other">Other</button>
 </div>
 
  <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
@@ -43,7 +44,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -65,7 +66,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -85,7 +86,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -105,7 +106,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -125,7 +126,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -145,7 +146,7 @@
 %>
         <div class="category-list list-group-item">
             <div class="hide">
-                <input class="category-sub-list-input" /> grams
+                <input class="category-sub-list-input" /> <span  class="qty">grams</span>
                 <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
@@ -157,12 +158,38 @@
 %>
     </div>
 </div>
+    <div class="list-group list-sub-group margin-top-100 col-xs-12 col-sm-12 col-md-4  hide">
+    <div data-sub-type="other">
+        <h4 class="cat-name main-text-color">Other</h4>
+        <div class="category-list list-group-item">
+            <div class="hide">
+                <input class="category-sub-list-input" /> <span class="qty">carbs</span>
+                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+            </div>
+            <div>
+                Other
+                <span class="add-grams glyphicon glyphicon-plus pull-right"></span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="meal-list-div margin-top-100 col-xs-12 col-sm-12 col-md-4 hide padding-left-0">
     <div class="list-group col-xs-12 col-sm-12 col-md-12">
         <h4 class="main-text-color">Meal</h4>
         <ul class="meal-list">  
         </ul>
+        <div>
+            <span class="margin-right-10">Ill :</span>
+            <label class="margin-right-10">No</label><input class="ill" type="radio" name="ill" checked="true" value="no"/>
+            <label class="margin-right-10">Yes</label><input class="ill" type="radio" name="ill" value="yes"/>
+        </div>
+        <div>
+            <span class="margin-right-10">Next 2 hours activities :</span>
+            <label class="margin-right-10">low, </label><input class="activity" type="radio" name="activity" value="low" checked="true"/>
+            <label class="margin-right-10">Medium</label><input class="activity" type="radio" name="activity" value="medium"/>
+            <label class="margin-right-10">High</label><input class="activity" type="radio" name="activity" value="high"/>
+        </div>
         <button class="save-meal btn btn-primary btn-transparent pull-right">Save</button>    
     </div>
 </div>

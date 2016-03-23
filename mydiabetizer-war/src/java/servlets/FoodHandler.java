@@ -8,25 +8,20 @@ package servlets;
 import beans.FoodHandlerBeanLocal;
 import ent.Beverages;
 import ent.Fatsandsweets;
-import ent.Food;
 import ent.Fruits;
 import ent.Meats;
 import ent.Starches;
 import ent.Vegetables;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
 import statics.CarbsHandler;
 //import com.google.gson.Gson;
 
@@ -61,28 +56,33 @@ public class FoodHandler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-      String data = request.getParameter("postData");
-      CarbsHandler ch=new CarbsHandler();
-      String carbs=ch.Run(data);
+        JsonReader jr = Json.createReader(request.getInputStream());
+        JsonObject jo = jr.readObject();
+        String mealData = jo.getJsonString("mealData").getString();
+        String ill = jo.getJsonString("ill").getString();
+        String activity = jo.getJsonString("activity").getString();
+        
+        CarbsHandler ch = new CarbsHandler();
+        String carbs = ch.Run(mealData);
    // Food f =ch.Run(data);
-   
-      request.setAttribute("test", carbs);
-      this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
+
+        request.setAttribute("test", ill);
+        this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response); //chceki
 //       
 
         /* 
-        int count=0;
-        String fromfile="@@@";
-        File file = new File("C:\\Users\\Rock n Roll\\Desktop\\fatsToDb.txt");
-        Scanner in = new Scanner(file);
-        while (in.hasNextLine())
-        {
-          String line = in.nextLine();
-          String split[]=line.split(";");
+         int count=0;
+         String fromfile="@@@";
+         File file = new File("C:\\Users\\Rock n Roll\\Desktop\\fatsToDb.txt");
+         Scanner in = new Scanner(file);
+         while (in.hasNextLine())
+         {
+         String line = in.nextLine();
+         String split[]=line.split(";");
          //Vegetables v=new Vegetables();
          // Fruits v=new Fruits();
          // Starches v=new Starches();
-          // Meats v=new Meats();
+         // Meats v=new Meats();
          // Beverages v=new Beverages();
          Fatsandsweets v =new Fatsandsweets();
          v.setFnsTitle(split[0]);
@@ -90,13 +90,13 @@ public class FoodHandler extends HttpServlet {
          v.setFnsMeasurements(split[2]);
          v.setFnsCarbs(Integer.parseInt(split[3]));
      
-            //foodHandlerBean.addFruits(v);
-           //foodHandlerBean.addStarches(v);
-          // foodHandlerBean.addMeats(v);
-          //foodHandlerBean.addBeverages(v);
-          foodHandlerBean.addFatsandsweets(v);
-           count++;
-        } 
+         //foodHandlerBean.addFruits(v);
+         //foodHandlerBean.addStarches(v);
+         // foodHandlerBean.addMeats(v);
+         //foodHandlerBean.addBeverages(v);
+         foodHandlerBean.addFatsandsweets(v);
+         count++;
+         } 
         
         
         
@@ -105,12 +105,12 @@ public class FoodHandler extends HttpServlet {
         
         
         
-//         List <Fruits> fruitsList;
-//         fruitsList= foodHandlerBean.getAllFruits();
+         //         List <Fruits> fruitsList;
+         //         fruitsList= foodHandlerBean.getAllFruits();
         
         
-      //  response.getWriter().write(fruitsList.get(3).getFruitTitle()+"e te tva e");
-        //JsonObject value = (JsonObject) Json.createObjectBuilder();
+         //  response.getWriter().write(fruitsList.get(3).getFruitTitle()+"e te tva e");
+         //JsonObject value = (JsonObject) Json.createObjectBuilder();
          */
     }
 
