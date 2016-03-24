@@ -63,10 +63,10 @@ public class FoodHandler extends HttpServlet {
         String activity = jo.getJsonString("activity").getString();
         
         CarbsHandler ch = new CarbsHandler();
-        String carbs = ch.Run(mealData);
+        String carbs = ch.Run(mealData,ill,activity);
    // Food f =ch.Run(data);
 
-        request.setAttribute("test", ill);
+        request.setAttribute("test", carbs);
         this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response); //chceki
 //       
 

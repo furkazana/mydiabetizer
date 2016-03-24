@@ -54,28 +54,28 @@ public class CarbsHandler
     }
     
     
-    public String Run(String data)
+    public String Run(String data,String ill,String activ)
     {  FoodFactory fh = new FoodFactory();
-         String s="";
-        String [] eachLine=data.split(";");
+         
+        String [] eachLine=data.split(";");//split line by line
         int percentRatio=0;
         int carbsInMeal=0;
         for (String eachLine1 : eachLine) 
        {
-            //String[] line = eachLine1.split(":");
-            String[] line = eachLine[0].split(":");
-          // Food food= fh.getFood(line[0]);
-           Food food = fh.getMatch(line[0].trim(),line[1].trim());//trimp to remove whitespaces beffore and after thr strings
-           // s=line[0].replaceAll("\\s+","");
-          //  s=food.getTitle();
-         //  int i=food;
+            String[] line = eachLine1.split(":");//split each line by Group-type and food-title
+           // String[] line = eachLine[0].split(":");
+          
+           String r;
+                  r = line[0].replace("undefined","");//remove undefined from the begining of the string
+           Food food = fh.getMatch(r.trim(),line[1].trim());//trimp to remove whitespaces beffore and after thr strings
+        
             int grams=food.getGrams();
             int carbs=food.getCarbs();
            if(grams!=0 && carbs!=0)//catching Arithmetic exceptions ddevide by 0
            {
             percentRatio=grams/carbs;
-            int calculatetCarbs=Integer.parseInt(line[2])/percentRatio;
-            carbsInMeal+=calculatetCarbs;
+            int calculatedCarbs=Integer.parseInt(line[2])/percentRatio;
+            carbsInMeal+=calculatedCarbs;
            }
        }
         return carbsInMeal+"";
@@ -92,3 +92,4 @@ public class CarbsHandler
     }
     
 }
+///
