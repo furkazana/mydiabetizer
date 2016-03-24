@@ -24,10 +24,18 @@ body {font-family: 'Droid Sans', sans-serif;
     padding:0px;
 }
 
+.padding-10 {
+    padding: 10px;
+}
+
 .clear {clear: both;}
 .logo {
     color: infotext;
     font-size: 35px;
+}
+
+.white-background {
+    background-color: #ffffff;
 }
 
 a.main-text-color:hover {

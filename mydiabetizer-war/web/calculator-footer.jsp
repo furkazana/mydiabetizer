@@ -24,13 +24,29 @@
             parent.addClass("hide");
         });
 
+        var numericalRegex = /^\d+$/;
+        var numericalErrorSpan = "<span class=\"errorTooltip\">Only numbers allowed</span>";
+
+        $(".blood-sugar").on("focusout", function () {
+            if (!numericalRegex.test($(this).val()) && $(this).val() !== "") {
+                $(this).parent().append(numericalErrorSpan);
+                $(this).parent().children(".errorTooltip").css({
+                    "left": "90px",
+                    "top": "-110%"
+                });
+            }
+        });
+
+        $(".blood-sugar").on("focus", function () {
+            $(this).parent().children(".errorTooltip").remove();
+        });
+
         $(".add-to-meal-list").on("click", function () {
             var _this = $(this),
-                    regex = /^\d+$/,
                     input = $(this).prev().prev(),
                     inputValue = input.val(),
                     categoryName = _this.parent().parent().parent().children(".cat-name").text();
-            if (regex.test(inputValue)) {
+            if (numericalRegex.test(inputValue)) {
                 var splitChar = "-",
                         text = _this.parent().next().text(),
                         result = text.split(splitChar),
@@ -41,8 +57,7 @@
                 _this.parent().addClass("hide");
                 _this.parent().next().removeClass("hide");
             } else {
-                var errorSpan = "<span class=\"errorTooltip\">Only numbers allowed</span>";
-                _this.parent().append(errorSpan);
+                _this.parent().append(numericalErrorSpan);
             }
         });
 
@@ -50,20 +65,29 @@
             $(this).parent().remove();
             console.log("executed");
         });
-        
+
         $(".save-meal").on("click", function () {
             if ($(".meal-list").children().length > 0) {
-                var postData = {}, mealData, ill, activity, splitChar = "-";
+                var postData = {}, mealData = "", ill = "", activity = "", mealType, bloodSugar = "", splitChar = "-";
                 $(".meal-list-item").each(function () {
                     var result = $(this).text().split(splitChar);
                     mealData += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
                 });
-                
+
                 ill = $(".ill").filter(":checked").val(),
                 activity = $(".activity").filter(":checked").val();
+                mealType = $(".meal-type").filter(":checked").val();
+                bloodSugar = $(".blood-sugar").val();
+                if(mealType === undefined) {
+                    mealType = "";
+                }
+
                 postData.mealData = mealData;
                 postData.ill = ill;
                 postData.activity = activity;
+                postData.mealType = mealType;
+                postData.bloodSugar = bloodSugar;
+                console.log(postData);
                 $.ajax({
                     type: "POST",
                     url: "/mydiabetizer-war/calculator",
