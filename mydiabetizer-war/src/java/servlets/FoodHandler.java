@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import statics.CarbsHandler;
+import statics.Diary;
 //import com.google.gson.Gson;
 
 /**
@@ -61,11 +62,13 @@ public class FoodHandler extends HttpServlet {
         String mealData = jo.getJsonString("mealData").getString();
         String ill = jo.getJsonString("ill").getString();
         String activity = jo.getJsonString("activity").getString();
-        
+        String mealType = jo.getJsonString("mealType").getString();
+        String bloodSugar = jo.getJsonString("bloodSugar").getString();
         CarbsHandler ch = new CarbsHandler();
         String carbs = ch.Run(mealData,ill,activity);
    // Food f =ch.Run(data);
-
+          Diary d=new Diary();
+      //   d.addToDiary(currentSugar,10+"","", ill, 2, mealType);
         request.setAttribute("test", activity);
         this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response); //chceki
 //       

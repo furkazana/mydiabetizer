@@ -28,9 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diarydates.findAll", query = "SELECT d FROM Diarydates d"),
     @NamedQuery(name = "Diarydates.findByDiarydateId", query = "SELECT d FROM Diarydates d WHERE d.diarydateId = :diarydateId"),
     @NamedQuery(name = "Diarydates.findByUserId", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId"),
-    @NamedQuery(name = "Diarydates.findByUserIdAndDate", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId and d.date = :date " ),
+    @NamedQuery(name = "Diarydates.findByDate", query = "SELECT d FROM Diarydates d WHERE d.date = :date"),
     @NamedQuery(name = "Diarydates.findHighestTableNumber", query = "SELECT max(d.diarydateId) FROM Diarydates d"),
-    @NamedQuery(name = "Diarydates.findByDate", query = "SELECT d FROM Diarydates d WHERE d.date = :date")})
+    @NamedQuery(name = "Diarydates.findByUserIdAndDate", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId and d.date = :date " ),
+    @NamedQuery(name = "Diarydates.findByIll", query = "SELECT d FROM Diarydates d WHERE d.ill = :ill")})
 public class Diarydates implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,9 @@ public class Diarydates implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "DATE")
     private String date;
+    @Size(max = 10)
+    @Column(name = "ILL")
+    private String ill;
 
     public Diarydates() {
     }
@@ -84,6 +88,14 @@ public class Diarydates implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getIll() {
+        return ill;
+    }
+
+    public void setIll(String ill) {
+        this.ill = ill;
     }
 
     @Override

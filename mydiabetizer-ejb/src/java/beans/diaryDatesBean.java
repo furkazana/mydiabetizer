@@ -46,8 +46,9 @@ public class diaryDatesBean
                                     "blUserDateId","l2UserDateId",
                                     "bdUserDateId","d2UserDateId",
                                     "bbedUserDateId","randomUserDateId"};//need to be udated
-    public Diarydates addUserAndDate(int id)
+    public Diarydates addUserAndDate(int id,String ill)
     {  
+        
          Query q= em.createNamedQuery("Diarydates.findHighestTableNumber");
          int tableId=(int) q.getSingleResult()+1;
          Diarydates diary=new Diarydates();
@@ -56,6 +57,7 @@ public class diaryDatesBean
          
          diary.setDiarydateId(tableId);
          diary.setUserId(id);
+         diary.setIll(ill);
          diary.setDate(dateFormat.format(date));
          
          em.persist(diary);
