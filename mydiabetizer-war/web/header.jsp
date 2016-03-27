@@ -32,7 +32,7 @@ for(Cookie cookie : cookies){
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <section class="header">
+        <section class="header white-background">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 margin-top-20">
@@ -40,14 +40,10 @@ for(Cookie cookie : cookies){
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">
-                            <li><a href="./home.jsp">Home</a></li>
+                            <li><a href="./account.jsp">My account</a></li>
                             <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
-                            <%if(session.getAttribute("user") != null)
-                                out.println("<li><a href=\"./account.jsp\">My account</a></li>");
-                            %> 
-                            <!-- <li> <%=userName %></li> -->
-                            <a href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>            
+                            <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>            
                         </ul>
                     </div>
                 </div>
