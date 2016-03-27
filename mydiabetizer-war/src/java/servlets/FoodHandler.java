@@ -13,9 +13,13 @@ import ent.Meats;
 import ent.Starches;
 import ent.Vegetables;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.json.Json;
+import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.servlet.ServletException;
@@ -50,6 +54,8 @@ public class FoodHandler extends HttpServlet {
         request.setAttribute("FatsandsweetsList", FatsandsweetsList);
         List<Beverages> BeveragesList = foodHandlerBean.getAllBeverages();
         request.setAttribute("BeveragesList", BeveragesList);
+        Map<String, Map<String, String>> meals = foodHandlerBean.getAllMeals(2);//hard codeing needs to be removed with the user sesion
+        request.setAttribute("MealsList",meals);
         this.getServletContext().getRequestDispatcher("/calculator.jsp").forward(request, response);
     }
 
@@ -65,15 +71,33 @@ public class FoodHandler extends HttpServlet {
         String mealType = jo.getJsonString("mealType").getString();
         String bloodSugar = jo.getJsonString("bloodSugar").getString();
         CarbsHandler ch = new CarbsHandler();
-        String carbs = ch.Run(mealData,ill,activity);
-   // Food f =ch.Run(data);
-          Diary d=new Diary();
-      //   d.addToDiary(currentSugar,10+"","", ill, 2, mealType);
-        request.setAttribute("test", activity);
-        this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response); //chceki
-//       
+        String carbs = ch.Run(mealData, ill, activity);
+        // Food f =ch.Run(data);
+        Diary d = new Diary();
+        d.addToDiary(bloodSugar, 10+"", " ", ill, 2, mealType);//affter it calculates the insulin units stores the results to personal rocerd
 
-        /* 
+//        response.setContentType("application/json");
+//        JsonBuilderFactory factory = Json.createBuilderFactory(null);
+//        JsonObject insulinValue = factory.createObjectBuilder()
+//                .add("insulin", 10).build();
+//        try (PrintWriter out = response.getWriter()) {
+//             out.println(insulinValue);
+//        }
+//        
+//        Map<String, Map<String, String>> meals = new HashMap<String, Map<String, String>>();
+//        Map<String, String> foodCat = new HashMap<String, String>();
+//        foodCat.put("potatoes", "Vegetablees");
+//        foodCat.put("tomatoes", "Vegetablees");
+//        foodCat.put("cucumber", "Vegetablees");
+//        meals.put("moussaka", foodCat);
+        
+        
+//         d.addToDiary(currentSugar,10+"","", ill, 2, mealType);
+                 //       request.setAttribute("test", activity);
+                //        this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
+                //       
+                /* 
+                //////////////////code below its to fill up automaticly the food DB from text files
          int count=0;
          String fromfile="@@@";
          File file = new File("C:\\Users\\Rock n Roll\\Desktop\\fatsToDb.txt");
@@ -114,7 +138,7 @@ public class FoodHandler extends HttpServlet {
         
          //  response.getWriter().write(fruitsList.get(3).getFruitTitle()+"e te tva e");
          //JsonObject value = (JsonObject) Json.createObjectBuilder();
-         */
+                 */
     }
 
     @Override

@@ -2,6 +2,7 @@
 </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".category-list-item").on("click", function () {
@@ -12,6 +13,7 @@
             if (mealListDiv.hasClass("hide")) {
                 mealListDiv.removeClass("hide");
             }
+            $(".insulinAjaxResult").addClass("hide")
         });
         $(".clickMe").on("click", function () {
             makeTest();
@@ -65,8 +67,12 @@
             $(this).parent().remove();
             console.log("executed");
         });
-
-        $(".save-meal").on("click", function () {
+        
+        $(".add-meal-to-meal-list").on("click", function() {
+            $(".meal-list").append($(this).next().html());
+        });
+        
+        $(".calculate").on("click", function () {
             if ($(".meal-list").children().length > 0) {
                 var postData = {}, mealData = "", ill = "", activity = "", mealType, bloodSugar = "", splitChar = "-";
                 $(".meal-list-item").each(function () {
@@ -95,11 +101,42 @@
                     data: JSON.stringify(postData),
                     success: function (data) {
                         // TODO
-                        $(".result").html(data);
+                        $(".list-sub-group, .meal-list-div").addClass("hide");
+                        $(".insulinAjaxResult").removeClass("hide");
+                        $(".insulin").html(data.insulin);
                         console.log(data);
                     }
                 });
             }
+        });
+       
+            $("#mealModal").on("show.bs.modal", function (e) {
+                if ($(".meal-list").children().length === 0) {
+                    return e.preventDefault();
+                }
+            });
+        var newMeal = {}, ingredientsCategory = "";
+        $(".save-meal").on("click", function() {
+            if ($(".meal-list").children().length > 0 && $(".mealName").val() != "") {
+                newMeal = {};
+                $(".meal-list > li").each(function() {
+                    var result = $(this).text().split("-");
+                    ingredientsCategory += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
+                });
+                newMeal.name = $(".mealName").val();
+                newMeal.ingredients = ingredientsCategory;
+                console.log(newMeal.ingredients);
+            }
+           $.ajax({
+                type: "POST",
+                url: "/mydiabetizer-war/MealHandler",
+                data: JSON.stringify({"newMeal": newMeal}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $(".result").html(data);
+                }
+           }); 
         });
     });
     function makeTest() {

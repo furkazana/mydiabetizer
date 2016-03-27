@@ -80,7 +80,31 @@ public class CarbsHandler
        }
         return carbsInMeal+"";
     }
-   
+   public String tripString(String data)
+   {
+      // data=data.replaceAll("\\s","");
+       
+       String r="";
+       
+        String [] eachLine=data.split(";");//split line by line
+      
+        for (int i=0;i<eachLine.length;i++) 
+       {
+            String[] line = eachLine[i].split(":");//split each line by Group-type and food-title
+           // String[] line = eachLine[0].split(":");
+          
+          if(i==eachLine.length-1)
+          {
+           r+=line[0]+":"+line[1].trim()+":"+" - "+line[2];   
+          }
+          else
+           r+=line[0]+":"+line[1].trim()+":"+" - "+line[2]+";";
+          //        r = line[0].replace("undefined","");//remove undefined from the begining of the string
+         //  Food food = fh.getMatch(r.trim(),line[1].trim());//trimp to remove whitespaces beffore and after thr strings
+       }
+        return r;
+        
+   }
     private FoodHandlerBeanLocal lookupFoodHandlerBeanLocal() {
         try {
             Context c = new InitialContext();

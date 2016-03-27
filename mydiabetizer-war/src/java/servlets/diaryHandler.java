@@ -29,7 +29,6 @@ public class diaryHandler extends HttpServlet
 
     @EJB
     private diaryDatesBean diaryDatesBean;
-  
     
       String daylyresults[]={"oobSL","oobINS","oobNotes","bbSL","bbINS","bbNotes","b2SL","b2INS","b2Notes",
                              "blSL","blINS","blNotes","l2SL","l2INS","l2Notes","bdSL","bdINS","bdNotes",
@@ -60,7 +59,7 @@ public class diaryHandler extends HttpServlet
               diaryDateAndUser =  diaryDatesBean.resultExistForTheDay((int) session.getAttribute("userIs"));
             if(diaryDateAndUser==null) 
             { //if there is no result found ad result for the user and the current date 
-              diaryDateAndUser= diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"),"no");
+              diaryDateAndUser =  diaryDatesBean.addUserAndDate((int) session.getAttribute("userIs"),"no");
             }
             int j=0;
             //loop though all the inputs fields and if there is an input adding it to the DB

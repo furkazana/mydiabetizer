@@ -8,10 +8,12 @@ package beans;
 import ent.Beverages;
 import ent.Fatsandsweets;
 import ent.Fruits;
+import ent.Meals;
 import ent.Meats;
 import ent.Starches;
 import ent.Vegetables;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Local;
 
 /**
@@ -26,6 +28,8 @@ public interface FoodHandlerBeanLocal {
     public void addStarches(Starches s);
     public void addMeats(Meats m);
     public void addBeverages(Beverages b);
+    public void addMeal(Meals meal);
+    public Map<String, Map<String, String>> getAllMeals(int id);
     public List<Beverages> getAllBeverages();
     public void addFatsandsweets(Fatsandsweets b);
     public List<Fatsandsweets> getAllFatsandsweets();
