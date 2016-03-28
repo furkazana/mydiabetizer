@@ -13,7 +13,8 @@
             if (mealListDiv.hasClass("hide")) {
                 mealListDiv.removeClass("hide");
             }
-            $(".insulinAjaxResult").addClass("hide")
+            $(".insulinAjaxResult").addClass("hide");
+            $(".mealAjaxResult").addClass("hide");
         });
         $(".clickMe").on("click", function () {
             makeTest();
@@ -104,7 +105,7 @@
                         $(".list-sub-group, .meal-list-div").addClass("hide");
                         $(".insulinAjaxResult").removeClass("hide");
                         $(".insulin").html(data.insulin);
-                        console.log(data);
+                        $(".meal-list").children().remove();
                     }
                 });
             }
@@ -134,7 +135,9 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    $(".result").html(data);
+//                    $(".mealAjaxResult").removeClass("hide");
+                    $("#mealModal").modal('hide');
+//                    $(".list-sub-group, .meal-list-div").addClass("hide");
                 }
            }); 
         });

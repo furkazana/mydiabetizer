@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.json.Json;
+import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.servlet.ServletException;
@@ -56,6 +57,15 @@ public class MealHandler extends HttpServlet
         m.setMealName(mealName);
         m.setMealIngrediens(trimptData);
         foodHandlerBean.addMeal(m);
+        
+        response.setContentType("application/json");
+        JsonBuilderFactory factory = Json.createBuilderFactory(null);
+        JsonObject insulinValue = factory.createObjectBuilder()
+                .add("success", true).build();
+        try (PrintWriter out = response.getWriter()) {
+             out.println(insulinValue);
+        }
+        
         request.setAttribute("test", mealName);
         this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
        

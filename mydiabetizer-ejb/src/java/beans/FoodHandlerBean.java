@@ -145,21 +145,23 @@ public class FoodHandlerBean implements FoodHandlerBeanLocal
     @Override
     public Map<String, Map<String, String>> getAllMeals(int id) 
     {   
-        Query q= em.createNamedQuery("Meals.findByUserId");
+         Query q= em.createNamedQuery("Meals.findByUserId");
         q.setParameter("userId", id);
         List <Meals> fs= q.getResultList();
         
         
         Map<String, Map<String, String>> meals = new HashMap<String, Map<String, String>>();
-        Map<String, String> foodCat = new HashMap<String, String>();
+//        Map<String, String>  foodCat=null;
         for(int i=0;i<fs.size();i++)
         { 
-            String[] split=fs.get(i).getMealIngrediens().split(":");
-            
+            String[] split=fs.get(i).getMealIngrediens().split(";");
+            Map<String, String>  foodCat = new HashMap<String, String>();
             for(int j=0;j<split.length;j++)
             {
-                 String[] splitS=split[j].split(";");
-                 foodCat.put(split[0], split[1]+split[2]);
+                //Beverages:Apple juice,unsweetened: - 124;Meats:Beef: - 124;Vegetables:Beets: - 1234
+                //FatsAndSweets:Butter: - 123;FatsAndSweets:Butter: - 123;FatsAndSweets:Cheese,blue: - 123;FatsAndSweets:Cheese,cheddar: - 123
+                 String[] splitS=split[j].split(":");
+                 foodCat.put(splitS[0], splitS[1]+splitS[2]);
             }
             meals.put(fs.get(i).getMealName(), foodCat);
             

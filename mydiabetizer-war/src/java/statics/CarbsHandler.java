@@ -62,6 +62,8 @@ public class CarbsHandler
         int carbsInMeal=0;
         for (String eachLine1 : eachLine) 
        {
+              //FatsAndSweets:Butter: - 123;FatsAndSweets:Butter: - 123;FatsAndSweets:Cheese,blue: - 123;FatsAndSweets:Cheese,cheddar: - 123
+           
             String[] line = eachLine1.split(":");//split each line by Group-type and food-title
            // String[] line = eachLine[0].split(":");
           
