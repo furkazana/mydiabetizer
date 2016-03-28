@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Userratios.findByBreakfast", query = "SELECT u FROM Userratios u WHERE u.breakfast = :breakfast"),
     @NamedQuery(name = "Userratios.findByLunch", query = "SELECT u FROM Userratios u WHERE u.lunch = :lunch"),
     @NamedQuery(name = "Userratios.findByDiner", query = "SELECT u FROM Userratios u WHERE u.diner = :diner"),
-    @NamedQuery(name = "Userratios.findByGeneral", query = "SELECT u FROM Userratios u WHERE u.general = :general")})
+    @NamedQuery(name = "Userratios.findByGeneral", query = "SELECT u FROM Userratios u WHERE u.general = :general"),
+    @NamedQuery(name = "Userratios.findByDate", query = "SELECT u FROM Userratios u WHERE u.date = :date")})
 public class Userratios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +62,9 @@ public class Userratios implements Serializable {
     @NotNull
     @Column(name = "GENERAL")
     private double general;
+    @Size(max = 30)
+    @Column(name = "DATE")
+    private String date;
 
     public Userratios() {
     }
@@ -123,6 +128,14 @@ public class Userratios implements Serializable {
 
     public void setGeneral(double general) {
         this.general = general;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
