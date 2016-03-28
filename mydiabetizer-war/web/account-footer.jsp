@@ -48,9 +48,9 @@
                 postData.generalRatio = $('[name="generalRatio"]').val();
                 $.ajax({
                     type: "POST",
-                    url: "/mydiabetizer-war/calculator",
+                    url: "/mydiabetizer-war/AccountHandler",
                     dataType: "json",
-                    data: JSON.stringify(postData),
+                    data: JSON.stringify({"postData": postData}),
                     success: function (data) {
                         // TODO
                         console.log(data);

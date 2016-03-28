@@ -31,6 +31,66 @@ public class Ratio
 //        Correction Factor = 1800 ÷Total Daily Insulin Dose = 1 unit of insulin will reduce the blood sugar so many mg/dl
          return (rulle1800/tdi)/18;
     }
+    public int[] inputRatioHandler(int br, int  lu, int  di, int  general)
+    {
+        
+        
+        if(br==0)
+            br=general;
+        if(lu==0)
+            lu=general;
+        if(di==0)
+            di=general;
+        if(general==0 && ( br!=0 || lu!=0 || di!=0))
+            general=(br+lu+di)/3;
+        
+      if((br==0 || lu==0 || di==0) && general!=0)
+      {   
+          if(br==0)
+          br=general;
+          if(lu==0)
+          lu=general;
+          if(di==0)
+          di=general;
+      }
+      else if(br!= 0 && ( lu==0 || di==0 || general==0))
+      {   
+          if(lu==0)
+          lu=br;
+          if(di==0)
+          di=br;
+          if(general==0)
+          general=br;
+      }
+       else if( lu!=0 && (br== 0 ||  di==0 || general==0))
+      {  if(br==0) 
+          br=lu;
+         if(di==0)
+          di=lu;
+         if(general==0)
+          general=lu;
+      }
+      else if((br== 0 || lu==0  || general==0) && di!=0)
+      { 
+          
+         if(br==0) 
+          br=di;
+         if(lu==0)
+          lu=di;
+         if(general==0)
+          general=di;
+      }
+      else if(br== 0 && lu==0  && general==0 && di==0)
+      {
+         int ratio = calculatRatio();
+          br=ratio;
+          lu=ratio;
+          di=ratio;
+          general=ratio;
+      }
+       int returnArray[] ={br,lu,di,general};
+        return returnArray;
+    }
     
     
     
