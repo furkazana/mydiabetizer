@@ -18,4 +18,5 @@ public interface AccountRationBeanLocal
     public void addUserInfo(double kg,String bodytype,int tdi,String dob,int userId);
     public void addUserRatio(int id,int br,int lu,int di,int general);
     public void updateUserInfo(Userinfo ui);
+    public void addOrUpdateUserInfo(Userinfo ui);
 }

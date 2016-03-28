@@ -7,6 +7,9 @@ package beans;
 
 import ent.Userinfo;
 import ent.Userratios;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,6 +56,8 @@ public class AccountRationBean implements AccountRationBeanLocal
         Query q= em.createNamedQuery("Userratios.getHighestID");
         int ratioId=(int) q.getSingleResult()+1;
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
         Userratios  ur=new Userratios ();
         
         ur.setRatioId(ratioId);
@@ -61,6 +66,8 @@ public class AccountRationBean implements AccountRationBeanLocal
         ur.setLunch(lu);
         ur.setDiner(di);
         ur.setGeneral(general);
+        ur.setDate(date.toString());
+        
         
         em.persist(ur);
         
@@ -87,9 +94,25 @@ public class AccountRationBean implements AccountRationBeanLocal
 //              fd.setBodyType(ui.getBodyType());
 //              fd.setTotalInsulinD(ui.getTotalInsulinD());
 //               em.merge(fd);
-           
-        
-        
+               
+    }
+    
+    @Override
+    public void addOrUpdateUserInfo(Userinfo ui)
+    {
+         Query q1= em.createNamedQuery("Userinfo.findByUserId"); 
+         q1.setParameter("userId", ui.getUserId());
+         List <Userinfo> isin= q1.getResultList();
+         if(isin.isEmpty())
+         {
+              Query q= em.createNamedQuery("Userinfo.getHighestID");
+              int id=(int) q.getSingleResult()+1;
+              ui.setUserInfoId(id);
+              em.persist(ui);
+         }
+         else
+          updateUserInfo(ui);   
+         
     }
 
     

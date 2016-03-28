@@ -56,6 +56,7 @@ public class AccountHandler extends HttpServlet
         JsonObject jo = jr.readObject();
         JsonObject accountData = jo.getJsonObject("postData");
         String kg="";
+        int userIdHard=3;
         kg = accountData.getString("kg");
           String bodyType = "";
           String rapidDoses = "";
@@ -109,10 +110,18 @@ public class AccountHandler extends HttpServlet
         r.setTdi(Integer.parseInt(rapidDoses));
         
         int ratios[]= r.inputRatioHandler(br, lu, di, general);
-        accountRationBean.addUserRatio(2, ratios[0], ratios[1], ratios[2], ratios[3]);
+        accountRationBean.addUserRatio(userIdHard, ratios[0], ratios[1], ratios[2], ratios[3]);
         
+        Userinfo ui=new Userinfo();
+        ui.setUserId(userIdHard);
+        ui.setKg(Integer.parseInt(kg));
+        ui.setTotalInsulinD(Integer.parseInt(rapidDoses));
+        ui.setBodyType(bodyType);
         
-        request.setAttribute("test", ratios.toString());
+        accountRationBean.addOrUpdateUserInfo(ui);
+        
+        String test1=ratios[0]+"-"+ ratios[1]+"-"+ ratios[2]+"-"+ratios[3];
+        request.setAttribute("test", test1);
         this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
     }
 

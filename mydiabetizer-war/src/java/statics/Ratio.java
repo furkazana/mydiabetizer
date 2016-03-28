@@ -41,7 +41,7 @@ public class Ratio
             lu=general;
         if(di==0)
             di=general;
-        if(general==0 && ( br!=0 || lu!=0 || di!=0))
+        if(general==0 && ( br!=0 && lu!=0 && di!=0))
             general=(br+lu+di)/3;
         
       if((br==0 || lu==0 || di==0) && general!=0)
