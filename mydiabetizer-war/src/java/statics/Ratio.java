@@ -24,12 +24,14 @@ public class Ratio
         //Total Daily Insulin Requirement (in units of insulin)= 0.55 X Total Weight in Kilograms
         return (int) (rulle500/(killograms * killolMaths));
     }
-    public int calculatCorectionFactor()
+    public double calculatCorectionFactor(int tdi)
     {
 //        Formula for calculation of mg/dl from mmol/l: mg/dl = 18 × mmol/l
 //        Formula for calculation of mmol/l from mg/dl: mmol/l = mg/dl / 18
 //        Correction Factor = 1800 ÷Total Daily Insulin Dose = 1 unit of insulin will reduce the blood sugar so many mg/dl
-         return (rulle1800/tdi)/18;
+        
+        
+        return (rulle1800/tdi)/18;
     }
     public int[] inputRatioHandler(int br, int  lu, int  di, int  general)
     {

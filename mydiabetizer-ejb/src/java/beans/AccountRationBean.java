@@ -134,11 +134,33 @@ public class AccountRationBean implements AccountRationBeanLocal
         
         return null;
     }
+     @Override
+    public Userinfo getUsersIfo(int id) 
+    {
+        
+        Query q1= em.createNamedQuery("Userinfo.findByUserId"); 
+        q1.setParameter("userId", id);
+        List <Userinfo> isin= q1.getResultList();
+        
+        if(isin.size()==1)
+        {
+            return isin.get(0);
+        }
+        if(isin.size()>1)
+        {
+            return isin.get(isin.size()-1);
+        }
+        
+        return null;
+    }
+    
     
     
     public void persist(Object object) {
         em.persist(object);
     }
+
+   
 
     
 

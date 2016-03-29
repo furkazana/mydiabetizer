@@ -15,9 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
- * @author tsvetelin
+ * @author Rock n Roll
  */
 public class UpdateHandler extends HttpServlet {
 

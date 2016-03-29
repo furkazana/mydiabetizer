@@ -21,4 +21,5 @@ public interface AccountRationBeanLocal
     public void updateUserInfo(Userinfo ui);
     public void addOrUpdateUserInfo(Userinfo ui);
     public Userratios getUsersRatios(int id);
+    public Userinfo getUsersIfo(int id);
 }

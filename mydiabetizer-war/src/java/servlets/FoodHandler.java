@@ -71,15 +71,26 @@ public class FoodHandler extends HttpServlet {
         String activity = jo.getJsonString("activity").getString();
         String mealType = jo.getJsonString("mealType").getString();
         String bloodSugar = jo.getJsonString("bloodSugar").getString();
+       
         CarbsHandler ch = new CarbsHandler();
         String carbs = ch.Run(mealData, ill, activity);
-        // Food f =ch.Run(data);
-        Diary d = new Diary();
-        d.addToDiary(bloodSugar, 10+"", " ", ill, 2, mealType);//affter it calculates the insulin units stores the results to personal rocerd
+        
+        double bs=0.0;
+        
+        try {
+         
+               bs=Double.parseDouble(bloodSugar);
+            } 
+        catch(NumberFormatException e)
+        {
 
+        }      
+        
+        
+       
         Insulin in=new Insulin();
         
-        int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs));
+        int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs),bs);
         
         
         response.setContentType("application/json");
