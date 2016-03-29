@@ -196,7 +196,7 @@ section.login, section.register {
 }
 
 .info-paragraph-wrapper:hover {
-    cursor: pointer;
+    cursor: default;
 }
 
 .info-paragraph-wrapper:hover > .info-paragraph {

@@ -76,8 +76,9 @@
         $(".calculate").on("click", function () {
             if ($(".meal-list").children().length > 0) {
                 var postData = {}, mealData = "", ill = "", activity = "", mealType, bloodSugar = "", splitChar = "-";
-                $(".meal-list-item").each(function () {
+                $(".meal-list > .meal-list-item").each(function () {
                     var result = $(this).text().split(splitChar);
+                    console.log(result[1]);
                     mealData += $(this).attr("data-category") + ":" + result[0] + ":" + result[1].match(/[0-9]+/)[0] + ";";
                 });
 

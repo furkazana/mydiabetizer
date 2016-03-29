@@ -209,13 +209,13 @@
         <% for(Map.Entry<String, HashMap<String, String>> entry : mealsList.entrySet()) { %>
         <div class="category-list list-group-item">
             <div>
-                <%= entry.getKey().replaceAll("[0-9]","") %><button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <%= entry.getKey() %><button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
                 <ul class="hide">
                     <% 
                         HashMap<String, String> category = entry.getValue();
                         for(Map.Entry<String, String> entry2 : category.entrySet()) { 
                     %>
-                        <li class="meal-list-item" data-category="<%= entry2.getKey() %>">
+                        <li class="meal-list-item" data-category="<%= entry2.getKey().replaceAll("[0-9]","") %>">
                             <%= entry2.getValue() %> grams
                             <span class="pull-right remove-meal-list-item">x</span>
                         </li>
