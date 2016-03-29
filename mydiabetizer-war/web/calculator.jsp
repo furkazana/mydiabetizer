@@ -3,6 +3,8 @@
     Created on : Feb 6, 2016, 1:37:31 PM
     Author     : Tsvetelin
 --%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map"%>
 <%@page import="ent.Fatsandsweets"%>
 <%@page import="ent.Beverages"%>
@@ -24,8 +26,9 @@
     List<Vegetables> vegList = (List<Vegetables>) request.getAttribute("vegList");
     List<Beverages> BeveragesList = (List<Beverages>) request.getAttribute("BeveragesList");
     List<Fatsandsweets> FatsandsweetsList = (List<Fatsandsweets>) request.getAttribute("FatsandsweetsList");
-    Map<String, Map<String, String>> melasList= ( Map<String, Map<String, String>>) request.getAttribute("MealsList");
+    HashMap<String, HashMap<String, String>> mealsList = ( HashMap<String, HashMap<String, String>>) request.getAttribute("MealsList");
 %>
+<%= mealsList.toString() %>
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <h4>Please help us to make more precise calculation by filling out the fields below. Thank you!</h4>
     <div class="margin-top-20">
@@ -203,7 +206,25 @@
 <div class="list-group list-sub-group margin-top-20 col-xs-12 col-sm-12 col-md-4  hide">
     <div data-sub-type="myMeals">
         <h4 class="cat-name main-text-color">My meals</h4>
+        <% for(Map.Entry<String, HashMap<String, String>> entry : mealsList.entrySet()) { %>
         <div class="category-list list-group-item">
+            <div>
+                <%= entry.getKey() %><button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <ul class="hide">
+                    <% 
+                        HashMap<String, String> category = entry.getValue();
+                        for(Map.Entry<String, String> entry2 : category.entrySet()) { 
+                    %>
+                        <li class="meal-list-item" data-category="<%= entry2.getKey() %>">
+                            <%= entry2.getValue() %> grams
+                            <span class="pull-right remove-meal-list-item">x</span>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <% } %>
+<!--        <div class="category-list list-group-item">
             <div>
                 Musaka<button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
                 <ul class="hide">
@@ -231,7 +252,7 @@
             <div>
                 Chiken Soup<button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
     
@@ -265,5 +286,8 @@
     <div class="insulinAjaxResult margin-top-20 col-xs-12 col-sm-12 col-md-offset-2 col-md-4 hide padding-left-0 white-background">
         <h4 class="text-center">Suggested units of insulin: <span class="insulin main-text-color"></span></h4>
     </div>
+<!--    <div class="mealAjaxResult margin-top-100 col-xs-12 col-sm-12 col-md-offset-2 col-md-4 hide padding-left-0 white-background">
+        <h4 class="text-center">Meal was successfully added.</h4>
+    </div>-->
 <button class="clickMe">Click me</button>
 <jsp:include page="calculator-footer.jsp" />

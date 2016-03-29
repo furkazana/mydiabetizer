@@ -76,13 +76,13 @@ public class FoodHandler extends HttpServlet {
         Diary d = new Diary();
         d.addToDiary(bloodSugar, 10+"", " ", ill, 2, mealType);//affter it calculates the insulin units stores the results to personal rocerd
 
-//        response.setContentType("application/json");
-//        JsonBuilderFactory factory = Json.createBuilderFactory(null);
-//        JsonObject insulinValue = factory.createObjectBuilder()
-//                .add("insulin", 10).build();
-//        try (PrintWriter out = response.getWriter()) {
-//             out.println(insulinValue);
-//        }
+        response.setContentType("application/json");
+        JsonBuilderFactory factory = Json.createBuilderFactory(null);
+        JsonObject insulinValue = factory.createObjectBuilder()
+                .add("insulin", 10).build();
+        try (PrintWriter out = response.getWriter()) {
+             out.println(insulinValue);
+        }
 //        
 //        Map<String, Map<String, String>> meals = new HashMap<String, Map<String, String>>();
 //        Map<String, String> foodCat = new HashMap<String, String>();
