@@ -38,7 +38,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script>
             // TODO CHANGE HARCODED USER ID!!!
-            (function() {
+            $(document).ready(function() {
                 $.ajax({
                 type: "GET",
                     url: "/mydiabetizer-war/UpdateHandler",
@@ -46,18 +46,20 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
+                        console.log(data.result);
                         if(data.result == 0) {
-                            $("update-ratios").addClass(".green-transparent-button");
+                            $(".update-ratios").addClass("green-transparent-button");
                         } else if(data.result == 1) {
-                            $("update-ratios").addClass(".orange-transparent-button");
+                            $(".update-ratios").addClass("orange-transparent-button");
                         } else if(data.result == 2) {
-                            $("update-ratios").addClass(".red-transparent-button");
+                            $(".update-ratios").addClass("red-transparent-button");
                         }
                     }
                 });
                 
                 $(".update-ratios").on("click", function(event) {
                     event.preventDefault();
+                    var _this = $(this);
                     $.ajax({
                         type: "POST",
                         url: "/mydiabetizer-war/UpdateHandler",
@@ -65,11 +67,14 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                           $("update-ratios").addClass(".green-transparent-button");
+                            var regex = /^(\w)*-transparent-button$/;
+                            var classes = $(this).attr("class");
+                            _this.removeClass();
+                           _this.addClass("update-ratios btn btn-primary btn-transparent pull-right green-transparent-button");
                         }
                     });
                 });
-            }(jQuery));
+            });
         </script>
     </head>
     <body>
@@ -86,7 +91,7 @@
                             <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
                             <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>
-                            <a style="margin-top: -5px; margin-right: 20px;" href="#" class="update-ratios btn btn-primary btn-transparent pull-right">Update ratios</a>
+                            <a style="margin-top: -5px; margin-right: 20px;" href="" class="update-ratios btn btn-primary btn-transparent pull-right">Update ratios</a>
                         </ul>
                     </div>
                 </div>
