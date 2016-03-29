@@ -116,12 +116,12 @@ public class AccountRationBean implements AccountRationBeanLocal
     }
 
     @Override
-    public Userratio getUsersRatios(int id) 
+    public Userratios getUsersRatios(int id) 
     {
         
         Query q1= em.createNamedQuery("Userratios.findByUserId"); 
         q1.setParameter("userId", id);
-        List <Userratio> isin= q1.getResultList();
+        List <Userratios> isin= q1.getResultList();
         
         if(isin.size()==1)
         {

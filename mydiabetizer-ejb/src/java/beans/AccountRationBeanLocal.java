@@ -6,6 +6,7 @@
 package beans;
 
 import ent.Userinfo;
+import ent.Userratios;
 import javax.ejb.Local;
 
 /**
@@ -19,5 +20,5 @@ public interface AccountRationBeanLocal
     public void addUserRatio(int id,int br,int lu,int di,int general);
     public void updateUserInfo(Userinfo ui);
     public void addOrUpdateUserInfo(Userinfo ui);
-    public Userratio getUsersRatios(int id);
+    public Userratios getUsersRatios(int id);
 }
