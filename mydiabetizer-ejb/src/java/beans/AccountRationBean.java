@@ -115,12 +115,32 @@ public class AccountRationBean implements AccountRationBeanLocal
          
     }
 
-    
+    @Override
+    public Userratio getUsersRatios(int id) 
+    {
+        
+        Query q1= em.createNamedQuery("Userratios.findByUserId"); 
+        q1.setParameter("userId", id);
+        List <Userratio> isin= q1.getResultList();
+        
+        if(isin.size()==1)
+        {
+            return isin.get(0);
+        }
+        if(isin.size()>1)
+        {
+            return isin.get(isin.size()-1);
+        }
+        
+        return null;
+    }
     
     
     public void persist(Object object) {
         em.persist(object);
     }
+
+    
 
    
   

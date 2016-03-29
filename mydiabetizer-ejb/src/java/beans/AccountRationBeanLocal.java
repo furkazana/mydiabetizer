@@ -19,4 +19,5 @@ public interface AccountRationBeanLocal
     public void addUserRatio(int id,int br,int lu,int di,int general);
     public void updateUserInfo(Userinfo ui);
     public void addOrUpdateUserInfo(Userinfo ui);
+    public Userratio getUsersRatios(int id);
 }

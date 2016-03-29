@@ -161,7 +161,7 @@ public class FoodHandlerBean implements FoodHandlerBeanLocal
                 //Beverages:Apple juice,unsweetened: - 124;Meats:Beef: - 124;Vegetables:Beets: - 1234
                 //FatsAndSweets:Butter: - 123;FatsAndSweets:Butter: - 123;FatsAndSweets:Cheese,blue: - 123;FatsAndSweets:Cheese,cheddar: - 123
                  String[] splitS=split[j].split(":");
-                 foodCat.put(splitS[0], splitS[1]+splitS[2]);
+                 foodCat.put(splitS[0]+j, splitS[1]+splitS[2]);
             }
             meals.put(fs.get(i).getMealName(), foodCat);
             

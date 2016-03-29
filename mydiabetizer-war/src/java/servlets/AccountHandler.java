@@ -6,7 +6,10 @@
 package servlets;
 
 import beans.AccountRationBeanLocal;
+
 import ent.Userinfo;
+import ent.Userratios;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -35,15 +38,15 @@ public class AccountHandler extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        Userinfo ui=new Userinfo();
-        ui.setUserId(2);
-        ui.setKg(80.0);
-        ui.setTotalInsulinD(25);
-        ui.setBodyType("slim");
-        
-        
-        
-       accountRationBean.updateUserInfo(ui);
+//        Userinfo ui=new Userinfo();
+//        ui.setUserId(2);
+//        ui.setKg(80.0);
+//        ui.setTotalInsulinD(25);
+//        ui.setBodyType("slim");
+//        
+//        
+//        
+//       accountRationBean.updateUserInfo(ui);
         
     }
 
@@ -120,7 +123,9 @@ public class AccountHandler extends HttpServlet
         
         accountRationBean.addOrUpdateUserInfo(ui);
         
-        String test1=ratios[0]+"-"+ ratios[1]+"-"+ ratios[2]+"-"+ratios[3];
+       Userratios uri=new Userratios();
+            // uri  = accountRationBean.getUsersRatios(userIdHard);
+        String test1=uri.toString();//+"-"+ ratios[1]+"-"+ ratios[2]+"-"+ratios[3];
         request.setAttribute("test", test1);
         this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
     }
