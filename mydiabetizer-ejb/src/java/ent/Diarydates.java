@@ -6,6 +6,7 @@
 package ent;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Rock n Roll
+ * @author tsvetelin
  */
 @Entity
 @Table(name = "DIARYDATES")
@@ -31,9 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diarydates.findByDate", query = "SELECT d FROM Diarydates d WHERE d.date = :date"),
     @NamedQuery(name = "Diarydates.findHighestTableNumber", query = "SELECT max(d.diarydateId) FROM Diarydates d"),
     @NamedQuery(name = "Diarydates.findByUserIdAndDate", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId and d.date = :date " ),
-    @NamedQuery(name = "Diarydates.findByIll", query = "SELECT d FROM Diarydates d WHERE d.ill = :ill")})
+    @NamedQuery(name = "Diarydates.findByIll", query = "SELECT d FROM Diarydates d WHERE d.ill = :ill"),
+    @NamedQuery(name = "Diarydates.findByCreatedAt", query = "SELECT d FROM Diarydates d WHERE d.createdAt = :createdAt")})
 public class Diarydates implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -52,6 +55,9 @@ public class Diarydates implements Serializable {
     @Size(max = 10)
     @Column(name = "ILL")
     private String ill;
+    @Column(name = "CREATED_AT")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     public Diarydates() {
     }
@@ -96,6 +102,14 @@ public class Diarydates implements Serializable {
 
     public void setIll(String ill) {
         this.ill = ill;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

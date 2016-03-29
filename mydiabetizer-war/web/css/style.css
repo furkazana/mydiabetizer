@@ -57,6 +57,22 @@ a.main-text-color:hover {
     color: #0098D0;
 }
 
+.green-transparent-button {
+    border-color: #61BC6D;
+    color: #61BC6D;
+}
+
+.orange-transparent-button {
+    border-color: #EB6B56;
+    color: #EB6B56;
+}
+
+
+.red-transparent-button {
+    border-color: #E8493E;
+    color: #E8493E;
+}
+
 section.login, section.register {
     margin-top:100px;
 }

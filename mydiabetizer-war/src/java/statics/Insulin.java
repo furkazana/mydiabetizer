@@ -36,8 +36,7 @@ public class Insulin
              uri  = accountRationBean.getUsersRatios(userid);
         
         
-        
-        return 0;
+        return (int) carbs / (int) uri.getGeneral();
     }
     
     

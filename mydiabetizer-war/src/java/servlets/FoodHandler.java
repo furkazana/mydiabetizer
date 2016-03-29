@@ -36,10 +36,10 @@ import statics.Insulin;
  * @author Rock n Roll
  */
 public class FoodHandler extends HttpServlet {
-
+        
     @EJB
     private FoodHandlerBeanLocal foodHandlerBean;
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

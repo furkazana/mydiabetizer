@@ -5,21 +5,26 @@
 --%>
 <%
 //allow access only if session exists
-String user = null;
-if(session.getAttribute("user") == null)
-{
-    response.sendRedirect(request.getContextPath() + "/register.jsp");
-    
-}else user = (String) session.getAttribute("user");
-String userName = null;
-String sessionID = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-    if(cookie.getName().equals("user")) userName = cookie.getValue();
-    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
-}
-}
+    String user = null;
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect(request.getContextPath() + "/register.jsp");
+
+    } else {
+        user = (String) session.getAttribute("user");
+    }
+    String userName = null;
+    String sessionID = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user")) {
+                userName = cookie.getValue();
+            }
+            if (cookie.getName().equals("JSESSIONID")) {
+                sessionID = cookie.getValue();
+            }
+        }
+    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,6 +35,42 @@ for(Cookie cookie : cookies){
         <link rel="stylesheet" href="./css/bootstrap.min.css" />
         <link rel="stylesheet" href="./css/style.css" />
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script>
+            // TODO CHANGE HARCODED USER ID!!!
+            (function() {
+                $.ajax({
+                type: "GET",
+                    url: "/mydiabetizer-war/UpdateHandler",
+                    data: JSON.stringify({"userId": 2}),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if(data.result == 0) {
+                            $("update-ratios").addClass(".green-transparent-button");
+                        } else if(data.result == 1) {
+                            $("update-ratios").addClass(".orange-transparent-button");
+                        } else if(data.result == 2) {
+                            $("update-ratios").addClass(".red-transparent-button");
+                        }
+                    }
+                });
+                
+                $(".update-ratios").on("click", function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/mydiabetizer-war/UpdateHandler",
+                        data: JSON.stringify({"userId": 2}),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                           $("update-ratios").addClass(".green-transparent-button");
+                        }
+                    });
+                });
+            }(jQuery));
+        </script>
     </head>
     <body>
         <section class="header white-background">
@@ -44,7 +85,8 @@ for(Cookie cookie : cookies){
                             <li><a href="./home.jsp">Diary</a></li>
                             <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
-                            <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>            
+                            <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>
+                            <a style="margin-top: -5px; margin-right: 20px;" href="#" class="update-ratios btn btn-primary btn-transparent pull-right">Update ratios</a>
                         </ul>
                     </div>
                 </div>
