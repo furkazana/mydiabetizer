@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import statics.Insulin;
 import statics.Ratio;
 
 /**
@@ -123,11 +124,13 @@ public class AccountHandler extends HttpServlet
         
         accountRationBean.addOrUpdateUserInfo(ui);
         
-       Userratios uri=new Userratios();
-            // uri  = accountRationBean.getUsersRatios(userIdHard);
-        String test1=uri.toString();//+"-"+ ratios[1]+"-"+ ratios[2]+"-"+ratios[3];
-        request.setAttribute("test", test1);
-        this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
+    
+             
+       
+       
+        //String test1= in.InsulinUnitsCalculation(userIdHard,20)+"";
+      //  request.setAttribute("test", test1);
+       // this.getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
     }
 
   

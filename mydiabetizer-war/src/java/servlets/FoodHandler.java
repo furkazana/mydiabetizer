@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import statics.CarbsHandler;
 import statics.Diary;
+import statics.Insulin;
 //import com.google.gson.Gson;
 
 /**
@@ -76,10 +77,15 @@ public class FoodHandler extends HttpServlet {
         Diary d = new Diary();
         d.addToDiary(bloodSugar, 10+"", " ", ill, 2, mealType);//affter it calculates the insulin units stores the results to personal rocerd
 
+        Insulin in=new Insulin();
+        
+        int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs));
+        
+        
         response.setContentType("application/json");
         JsonBuilderFactory factory = Json.createBuilderFactory(null);
         JsonObject insulinValue = factory.createObjectBuilder()
-                .add("insulin", 10).build();
+                .add("insulin", ins).build();
         try (PrintWriter out = response.getWriter()) {
              out.println(insulinValue);
         }
