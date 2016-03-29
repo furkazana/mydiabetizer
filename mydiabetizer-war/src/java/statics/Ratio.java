@@ -24,7 +24,7 @@ public class Ratio
         //Total Daily Insulin Requirement (in units of insulin)= 0.55 X Total Weight in Kilograms
         return (int) (rulle500/(killograms * killolMaths));
     }
-    public double calculatCorectionFactor(int tdi)
+      public double calculatCorectionFactor(int tdi)
     {
 //        Formula for calculation of mg/dl from mmol/l: mg/dl = 18 × mmol/l
 //        Formula for calculation of mmol/l from mg/dl: mmol/l = mg/dl / 18
@@ -85,15 +85,75 @@ public class Ratio
       else if(br== 0 && lu==0  && general==0 && di==0)
       {
          int ratio = calculatRatio();
-          br=ratio;
-          lu=ratio;
-          di=ratio;
-          general=ratio;
+         int weightRatio= weightRatioAdjusment(this.killograms);
+         int avarageRatio=(ratio+weightRatio)/2;
+          br=avarageRatio;
+          lu=avarageRatio;
+          di=avarageRatio;
+          general=avarageRatio;
       }
        int returnArray[] ={br,lu,di,general};
         return returnArray;
     }
-    
+    public int weightRatioAdjusment(double kg)
+    {
+        if(kg<60)
+        {
+            return 30;
+        }
+       
+        else if(kg>=60 && kg<80)
+        {
+            return 25;
+        }
+        else if(kg>=80 && kg<100)
+        {
+            return 20;
+        }
+        else if(kg>=100 && kg<120)
+        {
+            return 18;
+        }
+        else if(kg>=120 && kg<140)
+        {
+            return 15;
+        }
+        else if(kg>=140 && kg<170)
+        {
+            return 12;
+        }
+        else if(kg>=170 && kg<200)
+        {
+            return 10;
+        }
+        else if(kg>=200 && kg<230)
+        {
+            return 8;
+        }
+        else if(kg>=230 && kg<270)
+        {
+            return 6;
+        }
+        else if( kg >= 270)
+        {
+            return 5;
+        }
+//                less than 60	1:30
+//                60-80	1:25
+//                81-100	1:20
+//                101-120	1:18
+//                121-140	1:15
+//                141-170	1:12
+//                171-200	1:10
+//                201-230	1:8
+//                231-270	1:6
+//                more than 270	1:5
+        
+        
+        
+        return 0;
+        
+    }
     
     
     
