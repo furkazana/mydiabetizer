@@ -43,6 +43,10 @@ a.main-text-color:hover {
     color : #0098D0;
 }
 
+.white-color {
+    color: #fff;
+}
+
 .main-text-color {
     color: #0098D0;
 }
@@ -189,4 +193,23 @@ section.login, section.register {
 
 .header {
     padding-bottom: 24px; 
+}
+
+.info-paragraph-wrapper:hover {
+    cursor: pointer;
+}
+
+.info-paragraph-wrapper:hover > .info-paragraph {
+    display:block;
+} 
+
+.info-paragraph {
+    background: #333333 none repeat scroll 0 0;
+    display: none;
+    font-size: 13px;
+    left: 18px;
+    padding: 10px;
+    position: absolute;
+    top: -10px;
+    width: 200px;
 }

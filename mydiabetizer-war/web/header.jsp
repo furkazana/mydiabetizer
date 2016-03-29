@@ -41,6 +41,7 @@ for(Cookie cookie : cookies){
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">
                             <li><a href="./account.jsp">My account</a></li>
+                            <li><a href="./home.jsp">Diary</a></li>
                             <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs.jsp">Graphs</button></a></li>
                             <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>            

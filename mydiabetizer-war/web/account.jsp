@@ -31,6 +31,10 @@
             <span class="margin-right-10">Lunch</span><input class="ratio margin-right-20" style="width: 80px;" type="number" min="0" name="lunchRatio" placeholder=""/>
             <span class="margin-right-10">Dinner</span><input class="ratio margin-right-20" style="width: 80px;" type="number" min="0" name="dinnerRatio" placeholder=""/>
             <span class="margin-right-10">General</span><input class="ratio generalRatio" style="width: 80px;" type="number" min="0" name="generalRatio" placeholder=""/>
+            <span class="info-paragraph-wrapper" style="position: relative;">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <p class="info-paragraph white-color">Ratio info here</p>
+            </span>
         </div>
         <div><input class="btn btn-primary btn-transparent pull-right" type="submit" name="submit" value="Save"/></div>
     </form>
