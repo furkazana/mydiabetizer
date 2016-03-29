@@ -6,6 +6,7 @@
 package statics;
 
 import beans.AccountRationBeanLocal;
+import ent.Userratios;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -29,9 +30,10 @@ public class Insulin
         
     }
 
-    public int InsulinUnitsCalculation(int userid)
+    public int InsulinUnitsCalculation(int userid,int carbs)
     {
-       // accountRationBean
+       Userratios uri = new Userratios();
+             uri  = accountRationBean.getUsersRatios(userid);
         
         
         
