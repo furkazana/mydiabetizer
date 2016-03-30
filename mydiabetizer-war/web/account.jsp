@@ -34,7 +34,7 @@
             <!-- From here -->
             <div class="info-paragraph-wrapper" style="display: inline;position: relative;">
                 <span class="glyphicon glyphicon-info-sign"></span>
-                <p class="info-paragraph white-color">Ratio info here</p>
+                <p class="info-paragraph white-color">Ratio is very important to calculate  the grams of carbohydrate disposed of by 1 unit of insulin coverage at each meal!If know your ratios please provide them!If you don`t have the ratios the system will calculate them according to you personal data:]  </p>
             </div>
             <!-- til here -->
         </div>

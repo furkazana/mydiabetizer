@@ -39,7 +39,14 @@ public class AccountHandler extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-//        Userinfo ui=new Userinfo();
+          Userinfo ui=new Userinfo();
+          ui=accountRationBean.getUsersIfo(3);
+          Userratios ur= new Userratios();
+          ur=accountRationBean.getUsersRatios(3);
+          
+          request.setAttribute("UserInfo",ui);
+          request.setAttribute("UserRatio",ur);
+          this.getServletContext().getRequestDispatcher("/account.jsp").forward(request, response);
 //        ui.setUserId(2);
 //        ui.setKg(80.0);
 //        ui.setTotalInsulinD(25);

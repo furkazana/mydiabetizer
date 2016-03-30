@@ -22,7 +22,17 @@ public class Ratio
     {   
         //500 ÷ Total Daily Insulin Dose = 1 unit insulin covers so many grams of carbohydrate
         //Total Daily Insulin Requirement (in units of insulin)= 0.55 X Total Weight in Kilograms
-        return (int) (rulle500/(killograms * killolMaths));
+      
+        return (int) (rulle500/(killograms * killolMaths));//return suggested ratio
+     
+    }
+    public int calculateRatioIfUserProvideTDI()
+    {
+        
+        if(tdi!=0)
+         return (int) (rulle500/(tdi));//return ratio by user total daly doses insulin provided 
+        
+        return 0;
     }
       public double calculatCorectionFactor(int tdi)
     {
@@ -87,10 +97,22 @@ public class Ratio
          int ratio = calculatRatio();
          int weightRatio= weightRatioAdjusment(this.killograms);
          int avarageRatio=(ratio+weightRatio)/2;
+         int userRatio=calculateRatioIfUserProvideTDI();
+         int avarageIfUserRatio=(ratio+weightRatio+userRatio)/3;
+         if(avarageIfUserRatio==0)
+         {
           br=avarageRatio;
           lu=avarageRatio;
           di=avarageRatio;
           general=avarageRatio;
+         }
+         else
+         {
+          br=avarageIfUserRatio;
+          lu=avarageIfUserRatio;
+          di=avarageIfUserRatio;
+          general=avarageIfUserRatio;
+         }
       }
        int returnArray[] ={br,lu,di,general};
         return returnArray;

@@ -35,7 +35,7 @@ public class Insulin
     {
               Userratios uri = new Userratios();
               uri  = accountRationBean.getUsersRatios(userid);  
-              Userinfo inf = new Userinfo();
+              Userinfo inf   = new Userinfo();
               inf = accountRationBean.getUsersIfo(userid);
               int tdi = inf.getTotalInsulinD();
               int additonalUnitns=getHBSR(tdi,currentSugarLevel);
