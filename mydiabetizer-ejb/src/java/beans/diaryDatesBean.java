@@ -5,14 +5,12 @@
  */
 package beans;
 
+import ent.ChartEntity;
 import ent.Diarydates;
 import ent.TimeSlots;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -64,6 +62,66 @@ public class diaryDatesBean {
         return diary;
     }
 
+    public List<ChartEntity> test(int userId) {
+        Query q = em.createNativeQuery("SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, bb.BB_SUGAR as sugar, bb.BB_INSULIN as insulin, bb.BB_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BB AS bb, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = bb.BB_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as bb "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, bbed.BBED_SUGAR as sugar, bbed.BBED_INSULIN as insulin, bbed.BBED_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BBED AS bbed, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = bbed.BBED_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as bbed "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, bd.BD_SUGAR as sugar, bd.BD_INSULIN as insulin, bd.BD_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BD AS bd, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = bd.BD_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as bd "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, bl.BL_SUGAR as sugar, bl.BL_INSULIN as insulin, bl.BL_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BL AS bl, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = bl.BL_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as bl "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, bplus2.B2_SUGAR as sugar, bplus2.B2_INSULIN as insulin, bplus2.B2_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BPLUS2 AS bplus2, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = bplus2.B2_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as bplus2 "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, dplus2.D2_SUGAR as sugar, dplus2.D2_INSULIN as insulin, dplus2.D2_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.DPLUS2 AS dplus2, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = dplus2.D2_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as dplus2 "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, lplus2.L2_SUGAR as sugar, lplus2.L2_INSULIN as insulin, lplus2.L2_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.LPLUS2 AS lplus2, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = lplus2.L2_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as lplus2 "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, oob.OOB_SUGAR as sugar, oob.OOB_INSULIN as insulin, oob.OOB_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.OOB AS oob, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = oob.OOB_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as oob "
+                + " UNION ALL "
+                + " SELECT * FROM ( "
+                + "    SELECT dd.DIARYDATE_ID as id, r.RANDOM_SUGAR as sugar, r.RANDOM_INSULIN as insulin, r.RANDOM_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.RANDOM AS r, APP.DIARYDATES AS dd  "
+                + "    WHERE dd.DIARYDATE_ID = r.RANDOM_USER_DATE_ID AND dd.USER_ID = ? "
+                + ") as r "
+                + " ORDER BY \"date\", \"time\"", ChartEntity.class);
+        q.setParameter(1, userId);
+        q.setParameter(2, userId);
+        q.setParameter(3, userId);
+        q.setParameter(4, userId);
+        q.setParameter(5, userId);
+        q.setParameter(6, userId);
+        q.setParameter(7, userId);
+        q.setParameter(8, userId);
+        
+        List<ChartEntity> results = (List<ChartEntity>) q.getResultList();
+        return results;
+
+    }
+
     public Diarydates resultExistForTheDay(int id) {
         Diarydates nul;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -93,7 +151,7 @@ public class diaryDatesBean {
         boolean nul;
 
         try {
-         // Query q= em.createNamedQuery(queries[qNumber]);
+            // Query q= em.createNamedQuery(queries[qNumber]);
             //     q.setParameter(userIds[qNumber],id); 
             //     ob = q.getResultList();
             Query q = em.createNamedQuery(queries[qNumber]);

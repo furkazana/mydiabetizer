@@ -7,9 +7,6 @@
 <section class="login">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="logo main-text-color">My Diabetizer</div>
-            </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
                 <h4 class="text-center main-text-color">Sign in to your account</h4>
                 <form action="login" method="post">

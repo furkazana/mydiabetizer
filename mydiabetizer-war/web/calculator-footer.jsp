@@ -105,6 +105,7 @@
                         $(".list-sub-group, .meal-list-div").addClass("hide");
                         $(".insulinAjaxResult").removeClass("hide");
                         $(".insulin").html(data.insulin);
+                        console.log(data.array);
                         $(".meal-list").children().remove();
                     }
                 });

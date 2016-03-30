@@ -3,6 +3,7 @@
     Created on : Feb 6, 2016, 1:37:31 PM
     Author     : Tsvetelin
 --%>
+<%@page import="ent.ChartEntity"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map"%>
@@ -27,7 +28,9 @@
     List<Beverages> BeveragesList = (List<Beverages>) request.getAttribute("BeveragesList");
     List<Fatsandsweets> FatsandsweetsList = (List<Fatsandsweets>) request.getAttribute("FatsandsweetsList");
     HashMap<String, HashMap<String, String>> mealsList = ( HashMap<String, HashMap<String, String>>) request.getAttribute("MealsList");
+    List<ChartEntity> test = (List<ChartEntity>) request.getAttribute("test");
 %>
+<%= test.toString() %>
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <h4>Please help us to make more precise calculation by filling out the fields below. Thank you!</h4>
     <div class="margin-top-20">
@@ -73,7 +76,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= fatsandsweets.getFnsTitle() + " - " + fatsandsweets.getFnsGrams() + "g approx. " + fatsandsweets.getFnsMeasurements()%>
@@ -95,7 +98,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= fruit.getFruitTitle() + " - " + fruit.getFruitGrams() + "g approx. " + fruit.getFruitMeasurement()%>
@@ -115,7 +118,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= starch.getStarchTitle() + " - " + starch.getStarchGrams() + "g approx. " + starch.getStarchMeasurements()%>
@@ -135,7 +138,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= meat.getMeatTitle() + " - " + meat.getMeatGrams() + "g approx. " + meat.getMeatMeasurements()%>
@@ -155,7 +158,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= vegetable.getVegTitle() + " - " + vegetable.getVegGrams() + "g approx. " + vegetable.getVegMeasurements()%>
@@ -175,7 +178,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span  class="qty">grams</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 <%= beverage.getBevTitle() + " - " + beverage.getBevGrams() + "g approx. " + beverage.getBevMeasurement()%>
@@ -192,7 +195,7 @@
         <div class="category-list list-group-item">
             <div class="hide">
                 <input type="text" class="category-sub-list-input" /> <span class="qty">carbs</span>
-                <button type="button" class="add-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <button type="button" class="add-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
             <div>
                 Other
@@ -208,7 +211,7 @@
         <% for(Map.Entry<String, HashMap<String, String>> entry : mealsList.entrySet()) { %>
         <div class="category-list list-group-item">
             <div>
-                <%= entry.getKey() %><button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                <%= entry.getKey() %><button type="button" class="add-meal-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
                 <ul class="hide">
                     <% 
                         HashMap<String, String> category = entry.getValue();
@@ -225,7 +228,7 @@
         <% } %>
 <!--        <div class="category-list list-group-item">
             <div>
-                Musaka<button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                Musaka<button type="button" class="add-meal-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
                 <ul class="hide">
                     <li class="meal-list-item" data-category="Beverages">
                         Apple juice,unsweetened - 3123 grams
@@ -244,12 +247,12 @@
         </div>
         <div class="category-list list-group-item">
             <div>
-                Tarator<button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                Tarator<button type="button" class="add-meal-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
         </div>
         <div class="category-list list-group-item">
             <div>
-                Chiken Soup<button type="button" class="add-meal-to-meal-list btn-primary btn-transparent pull-right">Add to meal</button>
+                Chiken Soup<button type="button" class="add-meal-to-meal-list  btn-custom btn btn-primary btn-transparent pull-right">Add to meal</button>
             </div>
         </div>-->
     </div>
@@ -261,7 +264,7 @@
         <ul class="meal-list">  
         </ul>
         <button class="calculate btn btn-primary btn-transparent pull-right">Calculate</button>    
-        <button class="btn btn-primary btn-transparent pull-right margin-right-10" data-toggle="modal" data-target="#mealModal">Save meal</button>    
+        <button class="btn  btn-custom btn btn-primary btn-transparent pull-right margin-right-10" data-toggle="modal" data-target="#mealModal">Save meal</button>    
         <!-- Modal -->
         <div class="modal fade" id="mealModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">

@@ -6,6 +6,7 @@
 package servlets;
 
 import beans.FoodHandlerBeanLocal;
+import beans.diaryDatesBean;
 import ent.Beverages;
 import ent.Fatsandsweets;
 import ent.Fruits;
@@ -14,20 +15,20 @@ import ent.Starches;
 import ent.Vegetables;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.json.Json;
-import javax.json.JsonBuilderFactory;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import statics.CarbsHandler;
-import statics.Diary;
 import statics.Insulin;
 //import com.google.gson.Gson;
 
@@ -36,9 +37,12 @@ import statics.Insulin;
  * @author Rock n Roll
  */
 public class FoodHandler extends HttpServlet {
+    @EJB
+    private diaryDatesBean diaryDatesBean;
         
     @EJB
     private FoodHandlerBeanLocal foodHandlerBean;
+    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +61,7 @@ public class FoodHandler extends HttpServlet {
         request.setAttribute("BeveragesList", BeveragesList);
         Map<String, Map<String, String>> meals = foodHandlerBean.getAllMeals(2);//hard codeing needs to be removed with the user sesion
         request.setAttribute("MealsList",meals);
+        request.setAttribute("test",diaryDatesBean.test(2));
         this.getServletContext().getRequestDispatcher("/calculator.jsp").forward(request, response);
     }
 
@@ -88,17 +93,25 @@ public class FoodHandler extends HttpServlet {
         
         
        
-        Insulin in=new Insulin();
+//        Insulin in=new Insulin();
+//        
+//        int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs),bs);
         
-        int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs),bs);
+        
+     //   response.setContentType("application/json");
+        JsonObjectBuilder jsonObjBuilder = Json.createObjectBuilder();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        JsonArray ja;
+        
+        arrayBuilder.add(jsonObjBuilder.add("date", "1256-45-35").add("value", 5)).add(jsonObjBuilder.add("date", "1256-45asdasd").add("value", 10));
+        
+        ja = arrayBuilder.build();
+        
+        JsonObject jsonObj = jsonObjBuilder.add("array", ja).add("insulin", 10).build();
         
         
-        response.setContentType("application/json");
-        JsonBuilderFactory factory = Json.createBuilderFactory(null);
-        JsonObject insulinValue = factory.createObjectBuilder()
-                .add("insulin", ins).build();
         try (PrintWriter out = response.getWriter()) {
-             out.println(insulinValue);
+             out.println(jsonObj);
         }
 //        
 //        Map<String, Map<String, String>> meals = new HashMap<String, Map<String, String>>();

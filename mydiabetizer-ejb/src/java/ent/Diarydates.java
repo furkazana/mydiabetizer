@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Diarydates.findByUserIdAndDate", query = "SELECT d FROM Diarydates d WHERE d.userId = :userId and d.date = :date " ),
     @NamedQuery(name = "Diarydates.findByIll", query = "SELECT d FROM Diarydates d WHERE d.ill = :ill"),
     @NamedQuery(name = "Diarydates.findByCreatedAt", query = "SELECT d FROM Diarydates d WHERE d.createdAt = :createdAt")})
-public class Diarydates implements Serializable {
+public class Diarydates extends TimeSlots implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

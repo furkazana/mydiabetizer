@@ -55,6 +55,16 @@ a.main-text-color:hover {
     background: transparent;
     border-color: #0098D0;
     color: #0098D0;
+    border-radius: 0;
+}
+
+.btn-transparent:hover {
+    border-color: #0098D0;
+}
+
+.btn-custom > .btn {
+    padding: 4px;
+    font-size: 13px;
 }
 
 .green-transparent-button {
@@ -62,8 +72,9 @@ a.main-text-color:hover {
     color: #61BC6D;
 }
 
-.green-transparent-button:hover {
+.green-transparent-button:hover,  .green-transparent-button:active, .green-transparent-button:focus {
     background: #61BC6D;
+    border-color: #61BC6D;
 }
 
 .orange-transparent-button {
@@ -71,8 +82,9 @@ a.main-text-color:hover {
     color: #EB6B56;
 }
 
-.orange-transparent-button:hover {
+.orange-transparent-button:hover, .orange-transparent-button:active, .orange-transparent-button:focus {
     background: #EB6B56;
+    border-color: #EB6B56;
 }
 
 .red-transparent-button {
@@ -80,8 +92,9 @@ a.main-text-color:hover {
     color: #E8493E;
 }
 
-.red-transparent-button:hover {
+.red-transparent-button:hover, .red-transparent-button:active,  .red-transparent-button:focus {
     background: #E8493E;
+    border-color: #E8493E;
 }
 
 section.login, section.register {
@@ -111,7 +124,7 @@ section.login, section.register {
     padding: 10px;
 }	
 
-.form-inline .form-control {
+.form-inline .form-control, .form-control {
     width: 100%;
     box-shadow: none;
     border-bottom-left-radius: 0px;
