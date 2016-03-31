@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import statics.Insulin;
 import statics.Ratio;
 
@@ -39,6 +40,16 @@ public class AccountHandler extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+         
+          HttpSession session = request.getSession(false);
+        int userId=0;
+        if(session != null)
+        {   userId=(int) session.getAttribute("userIs");
+            
+            
+        }
+        
+        
           Userinfo ui=new Userinfo();
           ui=accountRationBean.getUsersIfo(3);
           Userratios ur= new Userratios();
