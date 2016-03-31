@@ -4,11 +4,13 @@
     Author     : Tsvetelin
 --%>
 
+<%@page import="ent.Userinfo"%>
 <jsp:include page="header.jsp" />
 <%
     if (session.getAttribute("user") == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
+    Userinfo userInfo = (Userinfo) request.getAttribute("UserInfo");
 %>
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <!-- <h4>Hello <% if(session.getAttribute("user") != null) {out.print(session.getAttribute("user"));} else{out.print("Username here");} %></h4>-->

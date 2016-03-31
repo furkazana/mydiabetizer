@@ -9,8 +9,6 @@
     if (session.getAttribute("user") == null) {
         response.sendRedirect(request.getContextPath() + "/register.jsp");
 
-    } else {
-        user = (String) session.getAttribute("user");
     }
     String userName = null;
     String sessionID = null;
