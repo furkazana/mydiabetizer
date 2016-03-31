@@ -179,7 +179,10 @@ public class Ratio
     
     
     
-    
+    public void updateRatio()
+    {
+        
+    }
     
     
     
