@@ -5,8 +5,11 @@
  */
 package beans;
 
+import ent.TimeSlots;
 import ent.Userinfo;
 import ent.Userratios;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -22,4 +25,7 @@ public interface AccountRationBeanLocal
     public void addOrUpdateUserInfo(Userinfo ui);
     public Userratios getUsersRatios(int id);
     public Userinfo getUsersIfo(int id);
+    public List<ArrayList<TimeSlots>> getBreakfast(int userId);
+    public List<ArrayList<TimeSlots>> getLunch(int userId);
+    public List<ArrayList<TimeSlots>> getDiner(int userId);
 }

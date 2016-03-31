@@ -5,10 +5,12 @@
  */
 package beans;
 
+import ent.TimeSlots;
 import ent.Userinfo;
 import ent.Userratios;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -154,11 +156,68 @@ public class AccountRationBean implements AccountRationBeanLocal
         return null;
     }
     
+    @Override
+    public List<ArrayList<TimeSlots>> getBreakfast(int userId)
+    {
+        
+        Query q= em.createNamedQuery("Bb.findByBbUserDateId"); 
+        q.setParameter("bbUserDateId", userId);
+        List <TimeSlots> bbResults= q.getResultList();
+        
+        Query q1= em.createNamedQuery("Bplus2.findByB2UserDateId"); 
+        q1.setParameter("b2UserDateId", userId);
+          List <TimeSlots> b2Results= q1.getResultList();
+        
+        List<ArrayList<TimeSlots>> list=new ArrayList<ArrayList<TimeSlots>>();
+        list.add((ArrayList<TimeSlots>) bbResults);
+        list.add((ArrayList<TimeSlots>) b2Results);
+        
+        return list;
+    }
     
+
+    @Override
+    public List<ArrayList<TimeSlots>> getLunch(int userId) 
+    {
+       
+        Query q= em.createNamedQuery("Bl.findByBlUserDateId"); 
+        q.setParameter("blUserDateId", userId);
+        List <TimeSlots> bbResults= q.getResultList();
+        
+        Query q1= em.createNamedQuery("Bplus2.findByB2UserDateId"); 
+        q1.setParameter("b2UserDateId", userId);
+          List <TimeSlots> b2Results= q1.getResultList();
+        
+        List<ArrayList<TimeSlots>> list=new ArrayList<ArrayList<TimeSlots>>();
+        list.add((ArrayList<TimeSlots>) bbResults);
+        list.add((ArrayList<TimeSlots>) b2Results);
+        
+        return list;
+    }
+
+    @Override
+     public List<ArrayList<TimeSlots>> getDiner(int userId) 
+     {
+         Query q= em.createNamedQuery("Bd.findByBdUserDateId"); 
+        q.setParameter("bdUserDateId", userId);
+        List <TimeSlots> bbResults= q.getResultList();
+        
+        Query q1= em.createNamedQuery("Dplus2.findByD2UserDateId"); 
+        q1.setParameter("d2UserDateId", userId);
+        List <TimeSlots> b2Results= q1.getResultList();
+        
+        List<ArrayList<TimeSlots>> list=new ArrayList<ArrayList<TimeSlots>>();
+        list.add((ArrayList<TimeSlots>) bbResults);
+        list.add((ArrayList<TimeSlots>) b2Results);
+        
+        return list;
+    }
     
     public void persist(Object object) {
         em.persist(object);
     }
+
+    
 
    
 
