@@ -11,6 +11,7 @@ import ent.TimeSlots;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -62,8 +63,8 @@ public class diaryDatesBean {
         return diary;
     }
 
-    public List<ChartEntity> test(int userId) {
-        Query q = em.createNativeQuery("SELECT * FROM ( "
+    public List<List<ChartEntity>> createGraphsData(int userId) {
+        Query q = em.createNativeQuery("INSERT INTO graphs_table(id, sugar, insulin, time, date) SELECT * FROM ( "
                 + "    SELECT dd.DIARYDATE_ID as id, bb.BB_SUGAR as sugar, bb.BB_INSULIN as insulin, bb.BB_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.BB AS bb, APP.DIARYDATES AS dd  "
                 + "    WHERE dd.DIARYDATE_ID = bb.BB_USER_DATE_ID AND dd.USER_ID = ? "
                 + ") as bb "
@@ -107,7 +108,7 @@ public class diaryDatesBean {
                 + "    SELECT dd.DIARYDATE_ID as id, r.RANDOM_SUGAR as sugar, r.RANDOM_INSULIN as insulin, r.RANDOM_TIME as \"time\", dd.\"DATE\" as \"date\" FROM APP.RANDOM AS r, APP.DIARYDATES AS dd  "
                 + "    WHERE dd.DIARYDATE_ID = r.RANDOM_USER_DATE_ID AND dd.USER_ID = ? "
                 + ") as r "
-                + " ORDER BY \"date\", \"time\"", ChartEntity.class);
+                + " ORDER BY \"date\", \"time\"");
         q.setParameter(1, userId);
         q.setParameter(2, userId);
         q.setParameter(3, userId);
@@ -116,9 +117,37 @@ public class diaryDatesBean {
         q.setParameter(6, userId);
         q.setParameter(7, userId);
         q.setParameter(8, userId);
+        q.setParameter(9, userId);
+        q.executeUpdate();
         
-        List<ChartEntity> results = (List<ChartEntity>) q.getResultList();
-        return results;
+        Query q1 = em.createNativeQuery("SELECT * FROM APP.GRAPHS_TABLE "
+                    +" WHERE HOUR(time) BETWEEN 12 AND 17 AND MINUTE(time) BETWEEN 0 AND 59", ChartEntity.class);
+        List<ChartEntity> twelveToSix = (List<ChartEntity>) q1.getResultList();
+        
+        Query q2 = em.createNativeQuery("SELECT * FROM APP.GRAPHS_TABLE "
+                    +" WHERE HOUR(time) BETWEEN 18 AND 23 AND MINUTE(time) BETWEEN 0 AND 59", ChartEntity.class);
+        List<ChartEntity> eighteenToEleven = (List<ChartEntity>) q2.getResultList();
+        
+        Query q3 = em.createNativeQuery("SELECT * FROM APP.GRAPHS_TABLE "
+                    +" WHERE HOUR(time) BETWEEN 0 AND 5 AND MINUTE(time) BETWEEN 0 AND 59", ChartEntity.class);
+        List<ChartEntity> zeroToSix = (List<ChartEntity>) q3.getResultList();
+        
+        Query q4 = em.createNativeQuery("SELECT * FROM APP.GRAPHS_TABLE "
+                    +" WHERE HOUR(time) BETWEEN 6 AND 11 AND MINUTE(time) BETWEEN 0 AND 59", ChartEntity.class);
+        List<ChartEntity> sixToTwelve = (List<ChartEntity>) q4.getResultList();
+        
+        
+        Query delete = em.createNativeQuery("DELETE FROM graphs_table");
+       
+        delete.executeUpdate();
+        
+        List<List<ChartEntity>> entities = new ArrayList<>();
+        entities.add(sixToTwelve);
+        entities.add(twelveToSix);
+        entities.add(eighteenToEleven);
+        entities.add(zeroToSix);
+        
+        return entities;
 
     }
 

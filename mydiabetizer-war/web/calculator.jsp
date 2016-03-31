@@ -28,9 +28,9 @@
     List<Beverages> BeveragesList = (List<Beverages>) request.getAttribute("BeveragesList");
     List<Fatsandsweets> FatsandsweetsList = (List<Fatsandsweets>) request.getAttribute("FatsandsweetsList");
     HashMap<String, HashMap<String, String>> mealsList = ( HashMap<String, HashMap<String, String>>) request.getAttribute("MealsList");
-    List<ChartEntity> test = (List<ChartEntity>) request.getAttribute("test");
+    
 %>
-<%= test.toString() %>
+
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <h4>Please help us to make more precise calculation by filling out the fields below. Thank you!</h4>
     <div class="margin-top-20">

@@ -6,7 +6,6 @@
 package servlets;
 
 import beans.FoodHandlerBeanLocal;
-import beans.diaryDatesBean;
 import ent.Beverages;
 import ent.ChartEntity;
 import ent.Fatsandsweets;
@@ -19,12 +18,8 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
@@ -35,24 +30,27 @@ import javax.servlet.http.HttpServletResponse;
 import statics.CarbsHandler;
 import statics.Diary;
 import statics.Insulin;
-//import com.google.gson.Gson;
 
 /**
  *
  * @author Rock n Roll
  */
-public class FoodHandler extends HttpServlet {
-    @EJB
-    private diaryDatesBean diaryDatesBean;
-        
+public class FoodHandler extends HttpServlet 
+{
+
     @EJB
     private FoodHandlerBeanLocal foodHandlerBean;
+
+   
+  
     
-    
+
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Fruits> fruitsList = foodHandlerBean.getAllFruits();
+            throws ServletException, IOException
+    {
+       List<Fruits> fruitsList = foodHandlerBean.getAllFruits();
         request.setAttribute("fruitsList", fruitsList);
         List<Starches> starchesList = foodHandlerBean.getAllStarches();
         request.setAttribute("starchesList", starchesList);
@@ -65,25 +63,25 @@ public class FoodHandler extends HttpServlet {
         List<Beverages> BeveragesList = foodHandlerBean.getAllBeverages();
         request.setAttribute("BeveragesList", BeveragesList);
         Map<String, Map<String, String>> meals = foodHandlerBean.getAllMeals(2);//hard codeing needs to be removed with the user sesion
-        request.setAttribute("MealsList",meals);
-        request.setAttribute("test",diaryDatesBean.test(2));
+        request.setAttribute("MealsList", meals);
         this.getServletContext().getRequestDispatcher("/calculator.jsp").forward(request, response);
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        try {
-            
-            JsonReader jr = Json.createReader(request.getInputStream());
+            throws ServletException, IOException 
+    {
+             JsonReader jr = Json.createReader(request.getInputStream());
             JsonObject jo = jr.readObject();
             String mealData = jo.getJsonString("mealData").getString();
             String ill = jo.getJsonString("ill").getString();
             String activity = jo.getJsonString("activity").getString();
             String mealType = jo.getJsonString("mealType").getString();
             String bloodSugar = jo.getJsonString("bloodSugar").getString();
-            
+             
+        
+    
             CarbsHandler ch = new CarbsHandler();
             String carbs = ch.Run(mealData, ill, activity);
             
@@ -103,20 +101,17 @@ public class FoodHandler extends HttpServlet {
             Insulin in=new Insulin();
             
             int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs),bs);
-            List<ChartEntity> Charlist= diaryDatesBean.test(2);
+         
             Diary d=new Diary();
             
             
             response.setContentType("application/json");
             JsonObjectBuilder jsonObjBuilder = Json.createObjectBuilder();
-            JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-            JsonArray ja;
             
-            arrayBuilder.add(jsonObjBuilder.add("date", "1256-45-35").add("value", 5)).add(jsonObjBuilder.add("date", "1256-45asdasd").add("value", 10));
+            jsonObjBuilder.add("insulin", ins);
             
-            ja = arrayBuilder.build();
             
-            JsonObject jsonObj = d.getJsonCustom(Charlist);
+            JsonObject jsonObj = jsonObjBuilder.build();
             
             
             
@@ -180,14 +175,9 @@ count++;
 //  response.getWriter().write(fruitsList.get(3).getFruitTitle()+"e te tva e");
 //JsonObject value = (JsonObject) Json.createObjectBuilder();
 */
-        } 
-        catch(ParseException ex)
-        {
-            Logger.getLogger(FoodHandler.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
-        }      
-    }
-
+   
     @Override
     public String getServletInfo() {
         return "Short description";
