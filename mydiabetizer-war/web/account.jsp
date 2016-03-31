@@ -10,6 +10,7 @@
     if (session.getAttribute("user") == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
+    Userinfo userInfo = (Userinfo) request.getAttribute("UserInfo");
 %>
 <% Userinfo f= (Userinfo)  request.getAttribute("UserInfo"); %>
 <%=f.getKg() %>

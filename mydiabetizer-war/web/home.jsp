@@ -3,17 +3,22 @@
     Created on : 26-Jan-2016, 11:54:33
     Author     : Rock n Roll
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Date"%>
 <%
 //allow access only if session exists.
-    String user = null;
     if (session.getAttribute("user") == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
-    } 
-    
+    }
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    Date date = new Date();
 %>
 <jsp:include page="header.jsp" />
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100" >
-    <h3 class="main-text-color">Daily organizer</h3>
+    <h3 class="main-text-color">Daily organizer - <%= dateFormat.format(date) %></h3>
     <div class="col-xs-12 col-sm-12 col-md-7 margin-top-20">
         <form class="form-inline" action="diaryHandler" method="post">
             <div class="form-group col-md-12">
