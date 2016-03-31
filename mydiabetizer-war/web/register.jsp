@@ -6,9 +6,27 @@
 <jsp:include page="index-header.jsp" />
 
 <%
-   String firstName=request.getParameter("firstName");
+   String user = null;
+    if (session.getAttribute("user") != null) {
+        user = (String) session.getAttribute("user");
+        response.sendRedirect(request.getContextPath() + "/home.jsp");
+    }
+    String userName = null;
+    String sessionID = null;
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user")) {
+                userName = cookie.getValue();
+            }
+            if (cookie.getName().equals("JSESSIONID")) {
+                sessionID = cookie.getValue();
+            }
+        }
+    }
    
 %>
+
 
 
 
@@ -16,7 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h4 class="main-text-color">Sign up and start using MyDiabetizer today.</h4>
+                <h4 class="main-text-color">Sign up and start using MyDiabetiser today.</h4>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
                 <form action="signup" method="post">

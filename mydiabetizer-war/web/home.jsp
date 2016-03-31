@@ -7,8 +7,7 @@
 //allow access only if session exists.
     String user = null;
     if (session.getAttribute("user") == null) {
-        response.sendRedirect(request.getContextPath() + "/register.jsp");
-
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
     } else {
         user = (String) session.getAttribute("user");
     }

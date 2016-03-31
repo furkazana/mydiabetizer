@@ -21,6 +21,10 @@
 <%@page import="beans.FoodHandlerBean"%>--%>
 
 <%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+    
     List<Fruits> fruitsList = (List<Fruits>) request.getAttribute("fruitsList");
     List<Starches> starchesList = (List<Starches>) request.getAttribute("starchesList");
     List<Meats> meatsList = (List<Meats>) request.getAttribute("meatsList");

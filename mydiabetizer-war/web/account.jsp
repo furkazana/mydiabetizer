@@ -5,6 +5,11 @@
 --%>
 
 <jsp:include page="header.jsp" />
+<%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+%>
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <!-- <h4>Hello <% if(session.getAttribute("user") != null) {out.print(session.getAttribute("user"));} else{out.print("Username here");} %></h4>-->
     <h3>We require some information in order to make precise and reliable calculation.</h3>
@@ -19,7 +24,7 @@
             <label style="font-weight: normal;" class="margin-right-10">Slim<input type="radio" name="bodyType" value="slim"/></label>
             <label style="font-weight: normal;" class="margin-right-10">Athletic<input type="radio" name="bodyType" value="athletic"/></label>
             <label style="font-weight: normal;" class="margin-right-10">Heavy<input type="radio" name="bodyType" value="heavy"/></label>
-            <label style="font-weight: normal;" class="margin-right-10">Fat<input type="radio" name="bodyType" value="fat"/></label>
+            <label style="font-weight: normal;" class="margin-right-10">Heavy-Muscular<input type="radio" name="bodyType" value="fat"/></label>
         </div>
         <div class="margin-top-20"><label>Daily total rapid insulin doses: </label> <input type="text" name="rapidDoses" placeholder=""/></div>
         <div class="margin-top-20"><label>Date of birth: </label><span class="required-color margin-right-10">*</span>

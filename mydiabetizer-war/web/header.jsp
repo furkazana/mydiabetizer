@@ -82,7 +82,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 margin-top-20">
-                        <span class="logo main-text-color">My Diabetizer</span>
+                        <span class="logo main-text-color">My Diabetiser</span>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">

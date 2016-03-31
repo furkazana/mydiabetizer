@@ -8,7 +8,11 @@
 <%@page import="javax.json.JsonReader"%>
 <%@page import="javax.json.Json"%>
 <jsp:include page="header.jsp" />
- <%   JsonObject jo = (JsonObject) request.getAttribute("json");
+ <% 
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+    JsonObject jo = (JsonObject) request.getAttribute("json");
 %>
     <h4 class="margin-top-20">06:00 - 11:59</h4>
     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20" id="chart1div"></div>

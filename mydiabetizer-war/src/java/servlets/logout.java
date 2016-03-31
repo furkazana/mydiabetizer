@@ -24,7 +24,9 @@ public class logout extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-      //jasson  apple,orange
+           HttpSession session = request.getSession();
+           session.invalidate();
+           response.sendRedirect(request.getContextPath() + "/login.jsp");
         
     }
 
@@ -34,7 +36,7 @@ public class logout extends HttpServlet {
     {
            HttpSession session = request.getSession();
            session.invalidate();
-          response.sendRedirect(request.getContextPath() + "/index.jsp");
+           response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 
     @Override
