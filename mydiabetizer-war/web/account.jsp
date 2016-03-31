@@ -4,12 +4,15 @@
     Author     : Tsvetelin
 --%>
 
+<%@page import="ent.Userinfo"%>
 <jsp:include page="header.jsp" />
 <%
     if (session.getAttribute("user") == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 %>
+<% Userinfo f= (Userinfo)  request.getAttribute("UserInfo"); %>
+<%=f.getKg() %>
 <div class="col-xs-12 col-sm-12 col-md-12 margin-top-100 white-background padding-10">
     <!-- <h4>Hello <% if(session.getAttribute("user") != null) {out.print(session.getAttribute("user"));} else{out.print("Username here");} %></h4>-->
     <h3>We require some information in order to make precise and reliable calculation.</h3>

@@ -58,7 +58,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccountHandler</servlet-name>
-        <url-pattern>/AccountHandler</url-pattern>
+        <url-pattern>/account</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateHandler</servlet-name>

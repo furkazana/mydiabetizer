@@ -5,26 +5,9 @@
 --%>
 <%
 //allow access only if session exists
-    String user = null;
-    if (session.getAttribute("user") == null) {
-        response.sendRedirect(request.getContextPath() + "/register.jsp");
+   
 
-    } else {
-        user = (String) session.getAttribute("user");
-    }
-    String userName = null;
-    String sessionID = null;
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("user")) {
-                userName = cookie.getValue();
-            }
-            if (cookie.getName().equals("JSESSIONID")) {
-                sessionID = cookie.getValue();
-            }
-        }
-    }
+  
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -86,7 +69,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-9 margin-top-20">
                         <ul class="main-menu">
-                            <li><a href="./account.jsp">My account</a></li>
+                            <li><a href="./account">My account</a></li>
                             <li><a href="./home.jsp">Diary</a></li>
                             <li><a href="./calculator">Calculator</button></a></li>
                             <li><a href="./graphs">Graphs</button></a></li>
