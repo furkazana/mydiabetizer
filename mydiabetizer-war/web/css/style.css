@@ -62,9 +62,10 @@ a.main-text-color:hover {
     border-color: #0098D0;
 }
 
-.btn-custom > .btn {
-    padding: 4px;
+.btn-custom {
     font-size: 13px;
+    margin-top: -3px;
+    padding: 2px 5px;
 }
 
 .green-transparent-button {
