@@ -27,6 +27,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import statics.CarbsHandler;
 import statics.Diary;
 import statics.Insulin;
@@ -72,7 +73,17 @@ public class FoodHandler extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-             JsonReader jr = Json.createReader(request.getInputStream());
+            
+            int userId=0;
+             HttpSession session = request.getSession(false);
+        
+        if(session != null)
+        {   userId=(int) session.getAttribute("userIs");
+            
+            
+        }
+        
+            JsonReader jr = Json.createReader(request.getInputStream());
             JsonObject jo = jr.readObject();
             String mealData = jo.getJsonString("mealData").getString();
             String ill = jo.getJsonString("ill").getString();
@@ -100,7 +111,7 @@ public class FoodHandler extends HttpServlet
             
             Insulin in=new Insulin();
             
-            int ins=in.InsulinUnitsCalculation(3, Integer.parseInt(carbs),bs);
+            int ins=in.InsulinUnitsCalculation(userId, Integer.parseInt(carbs),bs);
          
             Diary d=new Diary();
             

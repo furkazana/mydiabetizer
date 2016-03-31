@@ -41,22 +41,32 @@ public class AccountHandler extends HttpServlet
             throws ServletException, IOException 
     {
          
-          HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         int userId=0;
         if(session != null)
         {   userId=(int) session.getAttribute("userIs");
             
             
         }
-        
-        
           Userinfo ui=new Userinfo();
-          ui=accountRationBean.getUsersIfo(3);
-          Userratios ur= new Userratios();
-          ur=accountRationBean.getUsersRatios(3);
+          Userratios ur=new Userratios();
+         
+          try {
+                 ui=accountRationBean.getUsersIfo(userId);
+                 ur=accountRationBean.getUsersRatios(userId);
+                
+              }
+            catch(Exception e)
+            {
+                ui=null;
+                ur=null;
+            }
+         
+         
           
           request.setAttribute("UserInfo",ui);
           request.setAttribute("UserRatio",ur);
+          request.setAttribute("userId",userId);
           this.getServletContext().getRequestDispatcher("/account.jsp").forward(request, response);
 //        ui.setUserId(2);
 //        ui.setKg(80.0);

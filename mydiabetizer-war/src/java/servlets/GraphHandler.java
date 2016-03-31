@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import statics.Diary;
 
 /**
@@ -41,7 +42,16 @@ public class GraphHandler extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        List<List<ChartEntity>> Charlist= diaryDatesBean.createGraphsData(2);
+         HttpSession session = request.getSession(false);
+        int userId=0;
+        if(session != null)
+        {   userId=(int) session.getAttribute("userIs");
+            
+            
+        }
+        
+        
+        List<List<ChartEntity>> Charlist= diaryDatesBean.createGraphsData(userId);
             Diary d=new Diary();
             
             

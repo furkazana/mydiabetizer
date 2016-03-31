@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import statics.CarbsHandler;
 
 /**
@@ -42,6 +43,15 @@ public class MealHandler extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+          HttpSession session = request.getSession(false);
+        int userId=0;
+        if(session != null)
+        {   userId=(int) session.getAttribute("userIs");
+            
+            
+        }
+        
+        
         JsonReader jr = Json.createReader(request.getInputStream());
         JsonObject jo = jr.readObject();
         JsonObject newMeal = jo.getJsonObject("newMeal");
@@ -53,7 +63,7 @@ public class MealHandler extends HttpServlet
          String trimptData = ch.tripString(ingredients);
         
         Meals m=new Meals();
-        m.setUserId(2);//remove harcodeing get the user id from the session!!!!!!!!
+        m.setUserId(userId);//remove harcodeing get the user id from the session!!!!!!!!
         m.setMealName(mealName);
         m.setMealIngrediens(trimptData);
         foodHandlerBean.addMeal(m);
