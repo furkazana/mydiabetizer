@@ -89,7 +89,7 @@
                             <li><a href="./account.jsp">My account</a></li>
                             <li><a href="./home.jsp">Diary</a></li>
                             <li><a href="./calculator">Calculator</button></a></li>
-                            <li><a href="./graphs.jsp">Graphs</button></a></li>
+                            <li><a href="./graphs">Graphs</button></a></li>
                             <a style="margin-top: -5px;" href="./logout" class="btn btn-primary btn-transparent pull-right">Log Out</a>
                             <a style="margin-top: -5px; margin-right: 20px;" href="" class="update-ratios btn btn-primary btn-transparent pull-right">Update ratios</a>
                         </ul>
