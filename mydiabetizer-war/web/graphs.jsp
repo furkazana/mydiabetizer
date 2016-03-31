@@ -10,13 +10,13 @@
 <jsp:include page="header.jsp" />
  <%   JsonObject jo = (JsonObject) request.getAttribute("json");
 %>
-    <h4>06:00 - 11:59</h4>
+    <h4 class="margin-top-20">06:00 - 11:59</h4>
     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20" id="chart1div"></div>
-    <h4>12:00 - 17:59</h4>
+    <h4 class="margin-top-20">12:00 - 17:59</h4>
     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20" id="chart2div"></div>
-    <h4>18:00 - 23:59</h4>
+    <h4 class="margin-top-20">18:00 - 23:59</h4>
     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20" id="chart3div"></div>
-    <h4>00:00 - 05:59</h4>
+    <h4 class="margin-top-20">00:00 - 05:59</h4>
     <div class="col-xs-12 col-sm-12 col-md-12 margin-top-20" id="chart4div"></div>
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
